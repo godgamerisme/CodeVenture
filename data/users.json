@@ -1,20 +1,26 @@
 [
   {
     "id": 1,
-    "name": "John Doe",
+    "firstname": "John",
+    "lastname": "Doe",
     "username": "johndoe",
-    "email": "john@example.com"
+    "email": "john@example.com",
+    "usertype": "younglearner"
   },
   {
     "id": 2,
-    "name": "Jane Smith",
+    "firstname": "Jane",
+    "lastname": "Smith",
     "username": "janesmith",
-    "email": "jane@example.com"
+    "email": "jane@example.com",
+    "usertype": "educator"
   },
   {
     "id": 3,
-    "name": "Alice Johnson",
+    "firstname": "Alice",
+    "lastname": "Johnson",
     "username": "alicej",
-    "email": "alice@example.com"
+    "email": "alice@example.com",
+    "usertype": "parent"
   }
 ]

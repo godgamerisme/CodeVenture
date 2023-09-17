@@ -65,33 +65,40 @@ class ParentDashboard:
         print("\t1. Check Child's Progress")
         print("\t2. Log Out")
 
-
 class ModulesPage:
     @staticmethod
-    def display_page():
+    def display_on_start(module_array):
+        print("Welcome to All Modules Page")
+        print("Please select a module to view: ")
+        ModulesPage.display_all_modules(module_array)
+    def display_all_modules(module_array):
+        for module in range(len(module_array)):
+            print(f"{module+1}. {module_array[module].module_name}")
+
+
+class ModulePage:
+    @staticmethod
+    def display_on_start():
         print("Welcome to the Modules Page")
-        ModulesPage.display_menu()
+        ModulePage.display_menu()
 
     @staticmethod
     def display_menu():
         print("You have the following options:")
         print("\t1. View Tutorials")
         print("\t2. Take Quiz")
-        print("\t3. Start Challenges")
-        print("\t4. Back to Dashboard")
-
+        print("\t3. Back to Dashboard")
 
 class ProgressPage:
     @staticmethod
     def display_page():
         print("Welcome to the Progress Page")
+        ProgressPage.display_menu()
         # Display student's progress information here
         # You can fetch and display progress data for the student
 
     @staticmethod
     def display_menu():
         print("You have the following options:")
-        print("\t1. View Tutorial Progress")
-        print("\t2. View Quiz Progress")
-        print("\t3. View Challenge Progress")
-        print("\t4. Back to Dashboard")
+        print("\t1. View Overall Progress")
+        print("\t2. Back to Dashboard")

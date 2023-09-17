@@ -7,7 +7,7 @@
         {
           "tutorial_id": 101,
           "title": "What is Python programming language",
-          "content": "High-level\nPython is a high-level programming language that makes it easy to learn.Python doesn’t require you to understand the details of the computer in order to develop programs efficiently.\n2) General-purpose\nPython is a general-purpose language. It means that you can use Python in various domains including:\nWeb applications\nBig data applications\nTesting\nAutomation\nData science, machine learning, and AI\nDesktop software\nMobile apps",
+          "content": "1)High-level\nPython is a high-level programming language that makes it easy to learn.Python doesn’t require you to understand the details of the computer in order to develop programs efficiently.\n2) General-purpose\nPython is a general-purpose language. It means that you can use Python in various domains including:\nWeb applications\nBig data applications\nTesting\nAutomation\nData science, machine learning, and AI\nDesktop software\nMobile apps",
           "duration_minutes": 20
         },
         {
@@ -25,7 +25,7 @@
             "question_id": 1,
             "question_text": "What is the output of 'print(3 + 5)'?",
             "options": ["6", "8", "2", "None of the above"],
-            "correct_answer": "8"
+            "correct_answer": "2"
           },
           {
             "question_id": 2,
@@ -36,7 +36,7 @@
               " echo('Hello World');",
               " print('Hello World')"
             ],
-            "correct_answer": " print('Hello World')"
+            "correct_answer": "4"
           }
         ]
       }
@@ -71,7 +71,7 @@
               "Both of the answers are correct",
               "None of the answers are correct"
             ],
-            "correct_answer": "Both of the answers are correct"
+            "correct_answer": "3"
           },
           {
             "question_id": 4,
@@ -82,7 +82,7 @@
               "Both of the answers are correct",
               "None of the answers are correct"
             ],
-            "correct_answer": "Both of the answers are correct"
+            "correct_answer": "3"
           }
         ]
       }
@@ -90,8 +90,8 @@
   ],
   "users": [
     {
-      "user_id": 101,
-      "username": "younglearner1",
+      "user_id": 1,
+      "username": "jodo",
 
       "module_progress": [
         {
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "user_id": 102,
-      "username": "younglearner2",
+      "user_id": 2,
+      "username": "jasm2",
 
       "module_progress": [
         {

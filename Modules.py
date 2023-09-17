@@ -24,7 +24,8 @@ class Progress:
         self.username = username
         self.module_id = module_id
         self.completed_tutorials = completed_tutorials
-        self.completed_quiz = completed_quiz
+        self.completed_quiz = completed_quiz        
+        
 
 class Module:
     def __init__(self, module_id, module_name, tutorials, quiz):
@@ -35,7 +36,29 @@ class Module:
         self.user_progress = []  # A list to store Progress instances
 
     def add_user_progress(self, progress):
-        self.user_progress.append(progress)
+        self.user_progress.append(progress)        
+
+    def show_user_progress(self,user_id):
+        str_progress = ""
+        for progress in self.user_progress:
+            if progress.user_id == user_id:
+                str_progress = f"Module ID: {self.module_id}\nModule Name: {self.module_name}\n"
+                #map the tutorial id to tutorial title
+                str_progress += "Completed Tutorials:\n "
+                for tutorial_id in progress.completed_tutorials:
+                    for tutorial in self.tutorials:
+                        if tutorial.tutorial_id == tutorial_id:
+                            str_progress += tutorial.title + "\n"
+                #check if progress.completed_quiz is null
+                if progress.completed_quiz == None:
+                    str_progress += "Completed Quiz: None\n"
+                else:
+                    #map the quiz id to quiz title
+                    str_progress += "Completed Quiz:\n"
+                    if progress.completed_quiz == self.quiz.quiz_id:
+                        str_progress += self.quiz.title + "\n"
+        return str_progress        
+        
 
 class Option:
     def __init__(self, option_text):

@@ -2,6 +2,7 @@ from UserInterface import *
 from UserDatabase import UserDatabase
 from UserAuthenticate import UserAuthenticate
 from User import YoungLearner, Educator, Parent
+from ModuleDatabase import ModuleDatabase
 
 def main():
     """
@@ -11,6 +12,11 @@ def main():
     db = UserDatabase("./data/users.json")
     data = db.read_data()
     users = db.to_user_array()
+
+    #populate module data from file
+    db_module = ModuleDatabase("./data/modules.json")
+    data_module = db_module.read_data()
+    modules = db_module.to_module_array(data_module)
 
     # Create instance of UserAuthenticate class
     auth = UserAuthenticate(db, data,users)
@@ -59,18 +65,100 @@ def main():
                     continue
 
                 user = auth.login(username, password)
+                is_logout = False
                 
-                if isinstance(user, YoungLearner):
-                    StudentDashboard.display_dashboard()
-                
-                elif isinstance(user, Educator):
-                    TeacherDashboard.display_dashboard()
-                
-                elif isinstance(user, Parent):
-                    ParentDashboard.display_dashboard()
+                while not is_logout:
+                    if isinstance(user, YoungLearner):
+                        StudentDashboard.display_dashboard()
+                        student_option = input("Select one of these: ")
+                        if student_option == "1":
+                            #List all modules
+                            ModulesPage.display_on_start(module_array=modules)
+                            module_option = int(input("Select one of these: "))
+                            if module_option <= len(modules):
+                                current_module = modules[module_option-1]
+                                print("You have selected " + current_module.module_name)
+                                print("Loading module...")
+                                ModulePage.display_on_start()
+                                module_page_option = input("Select one of these: ")
+
+                                if module_page_option == "1": #view tutorials
+                                    for tutorial in range(len(current_module.tutorials)):
+                                        #display all tutorials title
+                                        print(f"{tutorial+1}. {current_module.tutorials[tutorial].title}")
+                                    tutorial_option = int(input("Select one of these: "))
+                                    if tutorial_option <= len(current_module.tutorials):
+                                        current_tutorial = current_module.tutorials[tutorial_option-1]
+                                        print("You have selected " + current_tutorial.title)
+                                        print("Loading tutorial...")
+                                        print(current_tutorial.content)
+                                        #prompt user to check if they want to complete the tutorial
+                                        complete_tutorial = input("Do you want to complete this tutorial? (y/n)")
+                                        if complete_tutorial == "y":
+                                            #update the progress in module
+                                            #search for the progress in the module
+                                            for progress in current_module.user_progress:
+                                                if progress.user_id == user.id:
+                                                    progress.completed_tutorials.append(current_tutorial.tutorial_id)
+                                                    break
+                                        else:
+                                            continue
+                                elif module_page_option == "2": #Take quiz
+                                    print("You have selected " + current_module.quiz.title)
+                                    print("Loading quiz...")
+                                    #display all questions
+                                    for question in range(len(current_module.quiz.questions)):
+                                        print(f"Question{question+1}. {current_module.quiz.questions[question].question_text}")
+                                        for option in range(len(current_module.quiz.questions[question].options)):
+                                            print(f"Option{option+1}. {current_module.quiz.questions[question].options[option].option_text}")
+                                        #prompt user to select an option
+                                        selected_option = input("Select one of the answer: ")
+                                        if selected_option == current_module.quiz.questions[question].correct_answer:                                         
+                                            print("You have selected the correct answer!")
+                                        else:
+                                            print("You have selected the wrong answer!")
+                                    #prompt user to check if they want to complete the quiz
+                                    complete_quiz = input("Do you want to complete this quiz? (y/n)")
+                                    if complete_quiz == "y":
+                                        #update the progress in module
+                                        #search for the progress in the module
+                                        for progress in current_module.user_progress:
+                                            if progress.user_id == user.id:
+                                                progress.completed_quiz.append(current_module.quiz.quiz_id)
+                                                break
+                                    else:
+                                        continue
+                                elif module_page_option == "3": #Back to dashboard
+                                    continue
+                                else:   
+                                    print("Invalid input, please try again")
+                                    continue
+                        elif student_option == "2": #check progress
+                            ProgressPage.display_page()
+                            #prompt user to select a progress to view
+                            progress_option = input("Select one of the option: ")
+                            if progress_option == "1":
+                                #go through all the modules and display the progress
+                                for module in modules:
+                                    print(module.show_user_progress(user.id))
+                            elif progress_option == "2":
+                                #back to dashboard
+                                continue
+                        elif student_option == "3": #logout
+                            is_logout = True                              
                     
-                else:
-                    print("Invalid email/password, please enter correct credentials! ")
+                    elif isinstance(user, Educator):
+                        TeacherDashboard.display_dashboard()
+                        #TODO: IMPLEMENT LTR
+                        break
+                    
+                    elif isinstance(user, Parent):
+                        ParentDashboard.display_dashboard()
+                        #TODO: IMPLEMENT LTR
+                        break
+                        
+                    else:
+                        print("Invalid email/password, please enter correct credentials! ")
             elif login_menu_option == "2":
                 print("Reset Password")
                 email = input("Please enter your email: ")

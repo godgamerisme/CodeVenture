@@ -1,6 +1,5 @@
-from HomePage import HomePage
+from UserInterface import *
 from UserDatabase import UserDatabase
-from LoginPage import LoginPage
 from UserAuthenticate import UserAuthenticate
 
 def main():
@@ -31,6 +30,9 @@ def main():
         else:
             print("Exiting...")
             break
+
+    # assuming the user has logged in successfully
+
 
     return
 

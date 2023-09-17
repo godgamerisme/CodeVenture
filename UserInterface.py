@@ -6,3 +6,10 @@ class HomePage():
     @staticmethod
     def display_menu():
         print("Displaying Home Page Menu")
+
+
+
+class LoginPage():
+    @staticmethod
+    def display_on_start():
+        print("Displaying Login Page")

@@ -42,8 +42,8 @@ class UserAuthenticate:
         #Validate user password
         new_password = input("Enter Password: ")
         while not self.validate_password(new_password):
-            print("Password cannot be longer than 10 characters")
-            new_password = input("Enter Password")
+            print("Password length must be at least 5 and not longer than 15 characters")
+            new_password = input("Enter Password: ")
 
         #Validate user usertype
         new_usertype = input("Enter User Type (either one of these: younglearner, educator, parent): ")

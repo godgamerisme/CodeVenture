@@ -14,7 +14,7 @@ def main():
     data = db.read_data()
     users = db.to_user_array(data)
 
-    
+
 
     while True:
         # display the Home Page Menu
@@ -26,6 +26,7 @@ def main():
             print("Register")
         elif menu_input == "2":
             LoginPage.display_on_start()
+            
         else:
             print("Exiting...")
             break

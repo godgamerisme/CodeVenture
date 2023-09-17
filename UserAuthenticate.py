@@ -1,7 +1,9 @@
+from User import *
 class UserAuthenticate:
-    def __init__(self, db, data_obj):
+    def __init__(self, db, data_obj,users_array):
         self.db = db
         self.data = data_obj
+        self.users = users_array
         
 
     def validate_name(self, name):
@@ -16,8 +18,13 @@ class UserAuthenticate:
         if usertype.lower() in ["younglearner", "educator", "parent"]:
             return True
         
+    def validate_email(self, email):
+        #make sure email is not empty and unique
+        if email != "" and email not in [user.email for user in self.users]:
+            return True
+        
     def register(self, new_firstname, new_lastname, new_password, email, new_usertype):
-        if(self.validate_name(new_firstname) and self.validate_name(new_lastname) and self.validate_password(new_password) and self.validate_usertype(new_usertype)):
+        if(self.validate_name(new_firstname) and self.validate_name(new_lastname) and self.validate_password(new_password) and self.validate_email(email) and  self.validate_usertype(new_usertype)):
             # Auto generate user ID
             id = len(self.data) + 1
 
@@ -52,11 +59,18 @@ class UserAuthenticate:
             # Add the new object to json as a new user
             self.data.append(pack_data)
             self.db.write_data(self.data)
+
+            #create User Object based on usertype
+            if new_usertype == "younglearner":
+                new_user = YoungLearner(id, new_firstname, new_lastname, username, email, new_password)
+            elif new_usertype == "educator":
+                new_user = Educator(id, new_firstname, new_lastname, username, email, new_password)
+            elif new_usertype == "parent":
+                new_user = Parent(id, new_firstname, new_lastname, username, email, new_password)
+            self.users.append(new_user)
             print("Register successfully\n")
         else:
             print("Register failed\n")
-            
-
 
     def pack_user_data(self, id, firstname, lastname, username, email, password, usertype):
         return {
@@ -69,14 +83,39 @@ class UserAuthenticate:
             "usertype": usertype
         }
 
+    def login(self, username, password):
 
-
-    def login(self, email, password):
-
-        for user in self.data:
-            if user["email"] == email and user["password"] == password:
-                return user["usertype"]
+        # Check if username exists
+        user = next((user for user in self.users if user.username == username), None)
+        if user:
+            # Check if password is correct
+            if user.password == password:
+                print("Login successfully\n")
+                return user
+            else:
+                print("Login failed\n")
+        else:
+            print("Login failed\n")
                 
 
-    def reset_password(self):
-        pass
+    def reset_password(self,email,new_password):
+        # Check if email exists
+        user = next((user for user in self.users if user.email == email), None)
+        if user:
+            # Check if password is correct
+            if self.validate_password(new_password):
+                user.password = new_password
+
+                # Update the data in json
+                for user_data in self.data:
+                    if user_data["email"] == email:
+                        user_data["password"] = new_password
+                        self.db.write_data(self.data)
+                print("Reset password successfully\n")
+
+            else:
+                print("Password length must be at least 5 and not longer than 15 characters\n")
+                print("Reset password failed\n")
+        else:
+            print("Email does not exist\n")
+            print("Reset password failed\n")

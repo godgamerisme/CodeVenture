@@ -22,10 +22,7 @@ class LoginPage:
     def display_menu():
         print("You have the following options:")
         print("\t1. Login")
-        print("\t2. Forgot Password")
-        print("\t3. Reset Password")
-        print("\t4. Exit")
-
+        print("\t2. Reset Password")
 
 class StudentDashboard:
     @staticmethod

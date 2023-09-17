@@ -1,20 +1,19 @@
 from UserInterface import *
 from UserDatabase import UserDatabase
 from UserAuthenticate import UserAuthenticate
+from User import YoungLearner, Educator, Parent
 
 def main():
     """
     This function controls the overall flow of the CodeVenture game.
     """
-
-     
-
     #populate user data from file
     db = UserDatabase("./data/users.json")
     data = db.read_data()
+    users = db.to_user_array()
 
     # Create instance of UserAuthenticate class
-    auth = UserAuthenticate(db, data)
+    auth = UserAuthenticate(db, data,users)
 
     while True:
         # Display the Home Page
@@ -48,30 +47,39 @@ def main():
 
         elif menu_input == "2":
             LoginPage.display_on_start()
-            select_option = input("Select one of these: ")
-            if(select_option == "1"):
+            login_menu_option = input("Select one of these: ")
+            if login_menu_option == "1":
 
-                email = input("Please enter your email address: ")
-                if email == "q":
+                username = input("Please enter your username: ")
+                if username == "q":
                     continue
 
                 password =  input("Please enter your password: ")
                 if password == "q":
                     continue
 
-                role = auth.login(email, password)
+                user = auth.login(username, password)
                 
-                if(role == "younglearner"):
+                if isinstance(user, YoungLearner):
                     StudentDashboard.display_dashboard()
                 
-                elif(role == "educator"):
+                elif isinstance(user, Educator):
                     TeacherDashboard.display_dashboard()
                 
-                elif(role == "parent"):
+                elif isinstance(user, Parent):
                     ParentDashboard.display_dashboard()
                     
                 else:
                     print("Invalid email/password, please enter correct credentials! ")
+            elif login_menu_option == "2":
+                print("Reset Password")
+                email = input("Please enter your email: ")
+                if email == "q":
+                    continue
+                password = input("Please enter your new password: ")
+                if password == "q":
+                    continue
+                auth.reset_password(email, password)
             
         else:
             print("Exiting...")

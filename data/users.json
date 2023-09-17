@@ -25,5 +25,32 @@
         "email": "aljo0003@codeventure.com",
         "password": "alice123",
         "usertype": "parent"
+    },
+    {
+        "id": 4,
+        "firstname": "Asd",
+        "lastname": "Sdf",
+        "username": "assd4",
+        "email": "assd0004@codeventure.com",
+        "password": "asdf",
+        "usertype": "sdf"
+    },
+    {
+        "id": 5,
+        "firstname": "Sdf",
+        "lastname": "Asdf",
+        "username": "sdas5",
+        "email": "sdas0005@codeventure.com",
+        "password": "asdf",
+        "usertype": "asdf"
+    },
+    {
+        "id": 6,
+        "firstname": "Asdfa",
+        "lastname": "Asdfa",
+        "username": "asas6",
+        "email": "asas0006@codeventure.com",
+        "password": "asdfas",
+        "usertype": "educator"
     }
 ]

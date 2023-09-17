@@ -1,6 +1,7 @@
 from HomePage import HomePage
 from UserDatabase import UserDatabase
 from LoginPage import LoginPage
+from UserAuthenticate import UserAuthenticate
 
 def main():
     """
@@ -24,6 +25,7 @@ def main():
         if menu_input == "1":
             #TODO: Decide if we need a design for regiser page
             print("Register")
+            UserAuthenticate.register(data)
         elif menu_input == "2":
             LoginPage.display_on_start()
         else:

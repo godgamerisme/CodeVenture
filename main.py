@@ -14,7 +14,8 @@ def main():
     data = db.read_data()
     users = db.to_user_array(data)
 
-    
+    # Create instance of UserAuthenticate class
+    auth = UserAuthenticate(db, data)
 
     while True:
         # display the Home Page Menu
@@ -24,7 +25,7 @@ def main():
         if menu_input == "1":
             #TODO: Decide if we need a design for regiser page
             print("Register")
-            UserAuthenticate.register(data)
+            auth.register()
         elif menu_input == "2":
             LoginPage.display_on_start()
         else:

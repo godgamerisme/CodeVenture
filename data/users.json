@@ -3,32 +3,27 @@
         "id": 1,
         "firstname": "John",
         "lastname": "Doe",
-        "username": "johndoe",
-        "email": "john@example.com",
+        "username": "jodo",
+        "email": "jodo0001@codeventure.com",
+        "password": "john123",
         "usertype": "younglearner"
     },
     {
         "id": 2,
         "firstname": "Jane",
         "lastname": "Smith",
-        "username": "janesmith",
-        "email": "jane@example.com",
+        "username": "jasm2",
+        "email": "jasm0002@codeventure.com",
+        "password": "jane123",
         "usertype": "educator"
     },
     {
         "id": 3,
         "firstname": "Alice",
         "lastname": "Johnson",
-        "username": "alicej",
-        "email": "alice@example.com",
+        "username": "aljo3",
+        "email": "aljo0003@codeventure.com",
+        "password": "alice123",
         "usertype": "parent"
-    },
-    {
-        "id": 4,
-        "firstname": "Nicholas",
-        "lastname": "tj",
-        "username": "asdf",
-        "email": "asdf",
-        "usertype": "younglearner"
     }
 ]

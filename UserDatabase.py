@@ -4,7 +4,7 @@ from User import *
 class UserDatabase:
     def __init__(self, filename):
         self.filename = filename
-        # ### 323
+
     def read_data(self):
         try:
             with open(self.filename, 'r') as file:
@@ -22,11 +22,11 @@ class UserDatabase:
         users = []
         for user in data:
             if user["usertype"] == "younglearner":
-                users.append(YoungLearner(user["id"], user["firstname"], user["lastname"], user["username"], user["email"]))
+                users.append(YoungLearner(user["id"], user["firstname"], user["lastname"], user["username"], user["email"], user["password"]))
             elif user["usertype"] == "educator":
-                users.append(Educator(user["id"], user["firstname"], user["lastname"], user["username"], user["email"]))
+                users.append(Educator(user["id"], user["firstname"], user["lastname"], user["username"], user["email"], user["password"]))
             elif user["usertype"] == "parent":
-                users.append(Parent(user["id"], user["firstname"], user["lastname"], user["username"], user["email"]))
+                users.append(Parent(user["id"], user["firstname"], user["lastname"], user["username"], user["email"], user["password"]))
         return users
 
 if __name__ == "__main__":

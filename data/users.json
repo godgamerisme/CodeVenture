@@ -4,7 +4,7 @@
         "firstname": "John",
         "lastname": "Doe",
         "username": "jodo",
-        "email": "jodo0001@codeventure.com",
+        "email": "jodo0001@hotmail.com",
         "password": "john123",
         "usertype": "younglearner"
     },
@@ -13,7 +13,7 @@
         "firstname": "Jane",
         "lastname": "Smith",
         "username": "jasm2",
-        "email": "jasm0002@codeventure.com",
+        "email": "jasm0002@gmail.com",
         "password": "jane123",
         "usertype": "educator"
     },
@@ -22,8 +22,17 @@
         "firstname": "Alice",
         "lastname": "Johnson",
         "username": "aljo3",
-        "email": "aljo0003@codeventure.com",
+        "email": "aljo0003@hotmail.com",
         "password": "alice123",
         "usertype": "parent"
+    },
+    {
+        "id": 4,
+        "firstname": "Dion",
+        "lastname": "Chin",
+        "username": "dich4",
+        "email": "bla@gmail.com",
+        "password": "blablabla",
+        "usertype": "younglearner"
     }
 ]

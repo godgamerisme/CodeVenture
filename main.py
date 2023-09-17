@@ -7,18 +7,18 @@ def main():
     This function controls the overall flow of the CodeVenture game.
     """
 
-     # Display the Home Page
-    HomePage.display_on_start()
+     
 
     #populate user data from file
     db = UserDatabase("./data/users.json")
     data = db.read_data()
-    users = db.to_user_array(data)
 
     # Create instance of UserAuthenticate class
     auth = UserAuthenticate(db, data)
 
     while True:
+        # Display the Home Page
+        HomePage.display_on_start()
         menu_input = input("Enter your choice: ")
         
     #TODO: based on choice, register, login, reset pass or exit
@@ -36,11 +36,15 @@ def main():
             if register_password == "q":
                 continue
 
+            register_email = input("Enter Email: ")
+            if register_email == "q":
+                continue
+
             register_usertype = input("Enter User Type (either one of these: younglearner, educator, parent): ")
             if register_usertype == "q":
                 continue
 
-            auth.register(register_first_name, register_last_name, register_password, register_usertype)
+            auth.register(register_first_name, register_last_name, register_password, register_email, register_usertype)
 
         elif menu_input == "2":
             LoginPage.display_on_start()

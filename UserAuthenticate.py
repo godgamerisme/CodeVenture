@@ -1,7 +1,8 @@
 class UserAuthenticate:
-    def __init__(self, db, data):
+    def __init__(self, db, data_obj):
         self.db = db
-        self.data = data
+        self.data = data_obj
+        
 
     def validate_name(self, name):
         if len(name) <= 10 and name.isalpha():
@@ -15,9 +16,10 @@ class UserAuthenticate:
         if usertype.lower() in ["younglearner", "educator", "parent"]:
             return True
         
-    def register(self, new_firstname, new_lastname, new_password, new_usertype):
-        # Auto generate user ID
-            id = max(item['id'] for item in self.data) + 1 if self.data else 1
+    def register(self, new_firstname, new_lastname, new_password, email, new_usertype):
+        if(self.validate_name(new_firstname) and self.validate_name(new_lastname) and self.validate_password(new_password) and self.validate_usertype(new_usertype)):
+            # Auto generate user ID
+            id = len(self.data) + 1
 
             # Receiving user firstname
             # while not self.validate_name(new_firstname):
@@ -35,9 +37,6 @@ class UserAuthenticate:
             # Create user username based on the name and ID
             username = new_firstname[:2].lower() + new_lastname[:2].lower() + str(id)
 
-            # Create user email based on the name and ID
-            new_email = new_firstname[:2].lower() + new_lastname[:2].lower() + f"{id:04}" + "@codeventure.com"
-
             #Validate user password
             # while not self.validate_password(new_password):
             #     print("Password length must be at least 5 and not longer than 15 characters")
@@ -50,20 +49,28 @@ class UserAuthenticate:
             new_usertype = new_usertype.lower()
 
             # Create a dictionary for the new object
-            new_object = {
-                "id": id,
-                "firstname": new_firstname,
-                "lastname": new_lastname,
-                "username": username,
-                "email": new_email,
-                "password": new_password,
-                "usertype": new_usertype
-            }
+            pack_data = self.pack_user_data(id, new_firstname, new_lastname, username, email, new_password, new_usertype)
             # Add the new object to json as a new user
-            self.data.append(new_object)
+            self.data.append(pack_data)
             self.db.write_data(self.data)
-            print("New data added successfully\n")
-            print("Your email is: " + new_email)
+            print("Register successfully\n")
+        else:
+            print("Register failed\n")
+            
+
+
+    def pack_user_data(self, id, firstname, lastname, username, email, password, usertype):
+        return {
+            "id": id,
+            "firstname": firstname,
+            "lastname": lastname,
+            "username": username,
+            "email": email,
+            "password": password,
+            "usertype": usertype
+        }
+
+
 
     def login(self, email, password):
 

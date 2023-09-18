@@ -69,6 +69,8 @@ class UserAuthenticate:
                 new_user = Parent(id, new_firstname, new_lastname, username, email, new_password)
             self.users.append(new_user)
             print("Register successfully\n")
+            print(f"Your username is {username}\n")
+            print(f"Your password is {new_password}\n")
         else:
             print("Register failed\n")
 

@@ -100,7 +100,16 @@ def main():
                                             for progress in current_module.user_progress:
                                                 if progress.user_id == user.id:
                                                     progress.completed_tutorials.append(current_tutorial.tutorial_id)
-                                                    break
+                                                    #update data in file
+                                                    #search in data_module and append the tutorial id to the completed tutorial
+                                                    for user_progress in data_module["users"]:
+                                                        if user_progress["user_id"] == progress.user_id:
+                                                            #search for the module id in the module progress
+                                                            for module_progress in user_progress["module_progress"]:
+                                                                if module_progress["module_id"] == current_module.module_id:
+                                                                    module_progress["completed_tutorials"].append(current_tutorial.tutorial_id)
+                                                                    break
+                                                    continue
                                         else:
                                             continue
                                 elif module_page_option == "2": #Take quiz
@@ -125,7 +134,17 @@ def main():
                                         for progress in current_module.user_progress:
                                             if progress.user_id == user.id:
                                                 progress.completed_quiz.append(current_module.quiz.quiz_id)
-                                                break
+                                                #update data in file
+                                                #search in data_module and append the quiz id to the completed quiz
+                                                for user_progress in data_module["users"]:
+                                                    if user_progress["user_id"] == progress.user_id:
+                                                        #search for the module id in the module progress
+                                                        for module_progress in user_progress["module_progress"]:
+                                                            if module_progress["module_id"] == current_module.module_id:
+                                                                module_progress["completed_quiz"].append(current_module.quiz.quiz_id)
+                                                                break
+                                                        break
+                                                continue
                                     else:
                                         continue
                                 elif module_page_option == "3": #Back to dashboard
@@ -145,7 +164,9 @@ def main():
                                 #back to dashboard
                                 continue
                         elif student_option == "3": #logout
-                            is_logout = True                              
+                            is_logout = True         
+                            db.write_data(data)
+                            db_module.write_data(data_module)
                     
                     elif isinstance(user, Educator):
                         TeacherDashboard.display_dashboard()
@@ -170,9 +191,12 @@ def main():
                 if password == "q":
                     continue
                 auth.reset_password(email, password)
+                
             
         else:
             print("Exiting...")
+            #TODO: save data to file
+            
             break
 
     # assuming the user has logged in successfully

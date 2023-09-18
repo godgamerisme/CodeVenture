@@ -24,8 +24,7 @@ class Progress:
         self.username = username
         self.module_id = module_id
         self.completed_tutorials = completed_tutorials
-        self.completed_quiz = completed_quiz        
-        
+        self.completed_quiz = [quiz for quiz in completed_quiz] if completed_quiz else [] 
 
 class Module:
     def __init__(self, module_id, module_name, tutorials, quiz):
@@ -55,12 +54,19 @@ class Module:
                 else:
                     #map the quiz id to quiz title
                     str_progress += "Completed Quiz:\n"
-                    if progress.completed_quiz == self.quiz.quiz_id:
-                        str_progress += self.quiz.title + "\n"
-        return str_progress        
+                    for quiz_id in progress.completed_quiz:
+                        if quiz_id == self.quiz.quiz_id:
+                            str_progress += self.quiz.title + "\n"
+        return str_progress     
         
 
 class Option:
     def __init__(self, option_text):
         self.option_text = option_text
 
+# class UserProgress:
+#     """This class is used to store the progress of currently login user"""
+#     def __init__(self, user_id, username):
+#         self.user_id = user_id
+#         self.username = username
+#         self.module_progress = []

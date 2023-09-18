@@ -159,6 +159,8 @@ def main():
                         
                     else:
                         print("Invalid email/password, please enter correct credentials! ")
+                        break
+                        
             elif login_menu_option == "2":
                 print("Reset Password")
                 email = input("Please enter your email: ")

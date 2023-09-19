@@ -1,6 +1,7 @@
 import json
 from Modules import *
 
+
 class ModuleDatabase:
     def __init__(self, filename):
         self.filename = filename
@@ -42,10 +43,7 @@ class ModuleDatabase:
 
         return modules
     
-    
-    
-    
-    
+
 if __name__ == "__main__":
     db = ModuleDatabase("./data/modules.json")
     data = db.read_data()
@@ -62,4 +60,3 @@ if __name__ == "__main__":
                 print(option)
         for progress in module.user_progress:
             print(progress)
-    

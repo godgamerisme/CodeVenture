@@ -1,6 +1,7 @@
 import json
 from User import *
 
+
 class UserDatabase:
     def __init__(self, filename):
         self.filename = filename
@@ -23,12 +24,17 @@ class UserDatabase:
         users = []
         for user in self.data:
             if user["usertype"] == "younglearner":
-                users.append(YoungLearner(user["id"], user["firstname"], user["lastname"], user["username"], user["email"], user["password"]))
+                users.append(
+                    YoungLearner(user["id"], user["firstname"], user["lastname"], user["username"], user["email"],
+                                 user["password"]))
             elif user["usertype"] == "educator":
-                users.append(Educator(user["id"], user["firstname"], user["lastname"], user["username"], user["email"], user["password"]))
+                users.append(Educator(user["id"], user["firstname"], user["lastname"], user["username"], user["email"],
+                                      user["password"]))
             elif user["usertype"] == "parent":
-                users.append(Parent(user["id"], user["firstname"], user["lastname"], user["username"], user["email"], user["password"]))
+                users.append(Parent(user["id"], user["firstname"], user["lastname"], user["username"], user["email"],
+                                    user["password"]))
         return users
+
 
 if __name__ == "__main__":
     db = UserDatabase("./data/users.json")

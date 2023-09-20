@@ -155,8 +155,31 @@ def main():
                                             break  # Exit the loop if the user input 'n'
                                         else:
                                             print("Please enter 'y' or 'n' to indicate your choice.")
+                                elif module_page_option == "3":  # Control Guide
+                                    control_guide = """
+                                    ==============================
+                                    Action Selection Control Guide
+                                    ==============================
+                                    To perform an action, type the corresponding number and press Enter:
 
-                                elif module_page_option == "3":  # Back to dashboard
+                                    Option1: Perform Action 1
+                                    Option2: Perform Action 2
+                                    Option3: Perform Action 3
+                                    Option4: Perform Action 4
+                                    Option5: Perform Action 5
+
+                                    Type the number for your desired option and press Enter to execute.
+
+                                    Example: To choose Option1, type 1 and press Enter.
+                                    ==============================
+                                    """
+                                    # Remove spaces only before each line
+                                    control_guide = "\n".join(line.lstrip() for line in control_guide.splitlines())
+
+                                    print(control_guide)
+                                    continue
+
+                                elif module_page_option == "4":  # Back to dashboard
                                     continue
                                 else:   
                                     print("Invalid input, please try again")

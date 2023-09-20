@@ -104,7 +104,8 @@ class ModulePage:
         print("You have the following options:")
         print("\t1. View Tutorials")
         print("\t2. Take Quiz")
-        print("\t3. Back to Dashboard")
+        print("\t3. Controls Guide")
+        print("\t4. Back to Dashboard")
 
 
 class ProgressPage:

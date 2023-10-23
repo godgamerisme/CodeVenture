@@ -4,10 +4,17 @@ from User import *
 
 class UserDatabase:
     def __init__(self, filename):
+        """
+        Initializes the UserDatabase object
+        :param filename: name of the json file
+        """
         self.filename = filename
         self.data = self.read_data()
 
     def read_data(self):
+        """
+        Reads data from json file
+        """
         try:
             with open(self.filename, 'r') as file:
                 data = json.load(file)
@@ -17,10 +24,16 @@ class UserDatabase:
             return []
 
     def write_data(self, data):
+        """
+        Writes data to json file
+        """
         with open(self.filename, 'w') as file:
             json.dump(data, file, indent=4)
 
     def to_user_array(self):
+        """
+        Converts the data from json to an array of User objects
+        """
         users = []
         for user in self.data:
             if user["usertype"] == "younglearner":

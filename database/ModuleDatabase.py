@@ -7,6 +7,11 @@ class ModuleDatabase:
         self.filename = filename
 
     def read_data(self):
+        """
+        Reads data from json file
+        :return: data read from json
+        :returntype: dict or empty list
+        """
         try:
             with open(self.filename, 'r') as file:
                 data = json.load(file)
@@ -16,10 +21,20 @@ class ModuleDatabase:
             return []
 
     def write_data(self, data):
+        """
+        Writes data to json file
+        :param data: data to write to json
+        :return: None
+        """
         with open(self.filename, 'w') as file:
             json.dump(data, file, indent=4)
 
     def to_module_array(self, data):
+        """
+        Converts the data from json to an array of Module objects
+        :param data: data read from json
+        :return: array of Module objects
+        """
         modules = [Module(**module_data) for module_data in data["modules"]]
         users = data.get("users", [])
         for user_data in users:

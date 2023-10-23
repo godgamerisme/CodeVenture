@@ -1,8 +1,8 @@
 from UserInterface import *
-from UserDatabase import UserDatabase
-from UserAuthenticate import UserAuthenticate
+from database.UserDatabase import UserDatabase
+from authentication.UserAuthenticate import UserAuthenticate
 from User import YoungLearner, Educator, Parent
-from ModuleDatabase import ModuleDatabase
+from database.ModuleDatabase import ModuleDatabase
 
 
 def main():
@@ -109,9 +109,12 @@ def main():
                                                                 # Search for the module id in the module progress
                                                                 for module_progress in user_progress["module_progress"]:
                                                                     if module_progress["module_id"] == current_module.module_id:
+                                                                        print("You have completed the tutorial!")
                                                                         module_progress["completed_tutorials"].append(current_tutorial.tutorial_id)
                                                                         break
-                                                        break  # Exit the loop if the user input 'y'
+                                                                break  # Exit the loop if the user input 'y'
+                                                        break
+                                                break
                                             elif complete_tutorial == "n":
                                                 break  # Exit the loop if the user input 'n'
                                             else:

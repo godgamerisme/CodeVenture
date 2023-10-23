@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "firstname": "John",
+        "lastname": "Doe",
+        "username": "jodo1",
+        "email": "johndoe@example.com",
+        "password": "password123",
+        "usertype": "younglearner"
+    },
+    {
+        "id": 2,
+        "firstname": "Jane",
+        "lastname": "Lol",
+        "username": "jalo2",
+        "email": "jane@gmail.com",
+        "password": "janelol",
+        "usertype": "educator"
+    },
+    {
+        "id": 3,
+        "firstname": "Alice",
+        "lastname": "Smith",
+        "username": "alsm3",
+        "email": "alice@hotmail.com",
+        "password": "alice123",
+        "usertype": "parent"
+    }
+]

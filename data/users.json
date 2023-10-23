@@ -43,5 +43,14 @@
         "email": "bruh@gmail.com",
         "password": "blabla",
         "usertype": "younglearner"
+    },
+    {
+        "id": 6,
+        "firstname": "Test",
+        "lastname": "Run",
+        "username": "teru6",
+        "email": "hahaha@gmail.com",
+        "password": "blabla",
+        "usertype": "younglearner"
     }
 ]

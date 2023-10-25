@@ -154,6 +154,36 @@ def test_reset_password():
     assert user_authenticate.reset_password("jodo0001@hotmail.com", "verylongpassword12345") is False
 
 
+def test_register_and_login():
+    db = UserDatabase("./test_users.json")
+    user_authenticate = UserAuthenticate(db=db, data_obj=[], users_array=[])
+
+    # Get the initial length of the database
+    initial = len(db.data)
+
+    # Mock the 'users' list with some sample users
+    user1 = User(1, "John", "Doe", "jodo", "jodo0001@hotmail.com", "blabla")
+    user_authenticate.users = [user1]
+
+    # Test registration with valid input
+    registration_successful = user_authenticate.register("Alice", "Smith", "alice123", "alice@example.com", "younglearner")
+    assert registration_successful is True
+
+    # Attempt to log in with the newly registered user's credentials
+    login_successful = user_authenticate.login("alsm1", "alice123")
+    assert login_successful == user_authenticate.users[1]  # The user object should match the registered user
+
+    # Test registration with duplicate username
+    registration_duplicate = user_authenticate.register("John", "Doe", "jodo", "johndoe@example.com", "educator")
+    assert registration_duplicate is False
+
+    # Test login with invalid credentials
+    login_invalid = user_authenticate.login("nonexistentuser", "password123")
+    assert login_invalid is False
+
+    # Check if the database length increase after registering user
+    assert len(db.data) == initial + 1
+
 
 
     

@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Question:
     def __init__(self, question_id, question_text, options, correct_answer):
         self.question_id = question_id
@@ -20,14 +23,44 @@ class Tutorial:
         self.content = content
         self.duration_minutes = duration_minutes
 
+    def get_tutorial_name(self):
+        return self.title
+    
+    def get_tutorial_id(self):
+        return self.tutorial_id
+    
+    def get_tutorial_content(self):
+        return self.content
+    
+    def get_tutorial_duration(self):
+        return self.duration_minutes
+
 
 class Progress:
-    def __init__(self, user_id, username, module_id, completed_tutorials, completed_quiz):
+    def __init__(self, user_id, username, module_id, completed_tutorials:List[Tutorial], completed_quiz):
         self.user_id = user_id
         self.username = username
         self.module_id = module_id
         self.completed_tutorials = completed_tutorials
         self.completed_quiz = [quiz for quiz in completed_quiz] if completed_quiz else [] 
+
+    def get_user_id(self):
+        return self.user_id
+    
+    def get_username(self):
+        return self.username
+    
+    def get_module_id(self):
+        return self.module_id
+    
+    def get_completed_tutorials(self):
+        return self.completed_tutorials
+    
+    def get_completed_quiz(self):
+        return self.completed_quiz
+    
+    def add_completed_tutorial(self, tutorial_id):
+        self.completed_tutorials.append(tutorial_id)
 
 
 class Module:
@@ -37,6 +70,21 @@ class Module:
         self.tutorials = [Tutorial(**t) for t in tutorials]
         self.quiz = Quiz(**quiz)
         self.user_progress = []  # A list to store Progress instances
+
+    def get_module_name(self):
+        return self.module_name
+    
+    def get_module_id(self):
+        return self.module_id
+    
+    def get_tutorials(self):
+        return self.tutorials
+    
+    def get_quiz(self):
+        return self.quiz
+    
+    def get_user_progress(self):
+        return self.user_progress
 
     def add_user_progress(self, progress):
         self.user_progress.append(progress)

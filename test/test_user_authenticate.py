@@ -3,7 +3,7 @@ from authentication.UserAuthenticate import UserAuthenticate
 #Import UserDatabase class
 from database.UserDatabase import UserDatabase
 #Import User class
-from User import User
+from User import *
 import pytest
 
 """
@@ -81,9 +81,13 @@ def test_register():
     user_authenticate3.users = [user1, user2]
 
     # Test valid registration
-    assert user_authenticate3.register("John", "Doe", "password123", "johndoe@example.com", "younglearner") is True
-    assert user_authenticate3.register("jane", "lol", "janelol", "jane@gmail.com", "educator") is True
-    assert user_authenticate3.register("Alice", "Smith", "alice123", "alice@hotmail.com", "parent") is True
+    # assert user_authenticate3.register("John", "Doe", "password123", "johndoe@example.com", "younglearner") is True
+    # assert user_authenticate3.register("jane", "lol", "janelol", "jane@gmail.com", "educator") is True
+    # assert user_authenticate3.register("Alice", "Smith", "alice123", "alice@hotmail.com", "parent") is True
+
+    assert isinstance(user_authenticate3.register("John", "Doe", "password123", "johndoe@example.com", "younglearner"),YoungLearner) is True
+    assert isinstance(user_authenticate3.register("jane", "lol", "janelol", "jane@gmail.com", "educator"),Educator) is True
+    assert isinstance(user_authenticate3.register("Alice", "Smith", "alice123", "alice@hotmail.com", "parent") ,Parent) is True
 
     # Test registration with invalid input
     assert user_authenticate3.register("123John", "Doe", "password123", "johndoe@example.com", "younglearner") is False

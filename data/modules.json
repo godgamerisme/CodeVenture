@@ -1,153 +1,151 @@
 {
-    "modules": [
+  "modules": [
+    {
+      "module_id": 1,
+      "module_name": "Introduction to Python",
+      "tutorials": [
         {
-            "module_id": 1,
-            "module_name": "Introduction to Python",
-            "tutorials": [
-                {
-                    "tutorial_id": 101,
-                    "title": "What is Python programming language",
-                    "content": "1)High-level\nPython is a high-level programming language that makes it easy to learn.Python doesn\u00e2\u20ac\u2122t require you to understand the details of the computer in order to develop programs efficiently.\n2) General-purpose\nPython is a general-purpose language. It means that you can use Python in various domains including:\nWeb applications\nBig data applications\nTesting\nAutomation\nData science, machine learning, and AI\nDesktop software\nMobile apps",
-                    "duration_minutes": 20
-                },
-                {
-                    "tutorial_id": 102,
-                    "title": "Python Hello World",
-                    "content": "The print() is a built-in function that displays a message on the screen. In this example, it\u00e2\u20ac\u2122ll show the message 'Hello, Word!'\nCreate a new app.py file, enter the following code, and save it:\nprint('Hello, World!')",
-                    "duration_minutes": 10
-                }
-            ],
-            "quiz": {
-                "quiz_id": 301,
-                "title": "Python Module 1 Quiz",
-                "questions": [
-                    {
-                        "question_id": 1,
-                        "question_text": "What is the output of 'print(3 + 5)'?",
-                        "options": [
-                            "6",
-                            "8",
-                            "2",
-                            "None of the above"
-                        ],
-                        "correct_answer": "2"
-                    },
-                    {
-                        "question_id": 2,
-                        "question_text": "What is a correct syntax to output 'Hello World' in Python?",
-                        "options": [
-                            " echo 'Hello World'",
-                            " p('Hello World')",
-                            " echo('Hello World');",
-                            " print('Hello World')"
-                        ],
-                        "correct_answer": "4"
-                    }
-                ]
-            }
+          "tutorial_id": 101,
+          "title": "What is Python programming language",
+          "content": "1)High-level\n\nPython is a high-level programming language that makes it easy to learn.Python doesnt require you to understand the details of the computer in order to develop programs efficiently.\n\n2) General-purpose\n\nPython is a general-purpose language. It means that you can use Python in various domains including:\n\nWeb applications\nBig data applications\nTesting\nAutomation\nData science, machine learning, and AI\nDesktop software\nMobile apps",
+          "duration_minutes": 20
         },
         {
-            "module_id": 2,
-            "module_name": "Python Variables",
-            "tutorials": [
-                {
-                    "tutorial_id": 103,
-                    "title": "What is a variable in Python",
-                    "content": "When you develop a program, you need to manage values, a lot of them. To store values, you use variables.\nIn Python, a variable is a label that you can assign a value to it. And a variable is always associated with a value. For example:\nmessage = 'Hello, World!'\nprint(message)\nOutput:\nHello, World!\nIn this example, message is a variable. It holds the string 'Hello, World!'. The print() function shows the message Hello, World! to the screen.",
-                    "duration_minutes": 10
-                },
-                {
-                    "tutorial_id": 104,
-                    "title": "Creating variables",
-                    "content": "To define a variable, you use the following syntax:\nvariable_name = value\nThe = is the assignment operator. In this syntax, you assign a value to the variable_name.\nThe value can be anything like a number, a string, etc., that you assign to the variable.",
-                    "duration_minutes": 10
-                }
-            ],
-            "quiz": {
-                "quiz_id": 302,
-                "title": "Python Module 2 Quiz",
-                "questions": [
-                    {
-                        "question_id": 3,
-                        "question_text": "How do you create a variable with the numeric value 5?",
-                        "options": [
-                            "x=5",
-                            "x=int(5)",
-                            "Both of the answers are correct",
-                            "None of the answers are correct"
-                        ],
-                        "correct_answer": "3"
-                    },
-                    {
-                        "question_id": 4,
-                        "question_text": "How do you create a variable with the floating number 2.8?",
-                        "options": [
-                            "x=2.8",
-                            "x=float(2.8)",
-                            "Both of the answers are correct",
-                            "None of the answers are correct"
-                        ],
-                        "correct_answer": "3"
-                    }
-                ]
-            }
+          "tutorial_id": 102,
+          "title": "Python Hello World",
+          "content": "The print() is a built-in function that displays a message on the screen. In this example, it\u00e2\u20ac\u2122ll show the message 'Hello, Word!'\nCreate a new app.py file, enter the following code, and save it:\nprint('Hello, World!')",
+          "duration_minutes": 10
         }
-    ],
-    "users": [
+      ],
+      "quiz": {
+        "quiz_id": 301,
+        "title": "Python Module 1 Quiz",
+        "questions": [
+          {
+            "question_id": 1,
+            "question_text": "What is the output of 'print(3 + 5)'?",
+            "options": ["6", "8", "2", "None of the above"],
+            "correct_answer": "2"
+          },
+          {
+            "question_id": 2,
+            "question_text": "What is a correct syntax to output 'Hello World' in Python?",
+            "options": [
+              " echo 'Hello World'",
+              " p('Hello World')",
+              " echo('Hello World');",
+              " print('Hello World')"
+            ],
+            "correct_answer": "4"
+          }
+        ]
+      }
+    },
+    {
+      "module_id": 2,
+      "module_name": "Python Variables",
+      "tutorials": [
         {
-            "user_id": 1,
-            "username": "jodo",
-            "module_progress": [
-                {
-                    "module_id": 1,
-                    "completed_tutorials": [
-                        101
-                    ],
-                    "completed_quiz": [
-                        301
-                    ]
-                },
-                {
-                    "module_id": 2,
-                    "completed_tutorials": [],
-                    "completed_quiz": [
-                        302
-                    ]
-                },
-                {
-                    "module_id": 3,
-                    "completed_tutorials": [],
-                    "completed_quiz": []
-                }
-            ]
+          "tutorial_id": 103,
+          "title": "What is a variable in Python",
+          "content": "When you develop a program, you need to manage values, a lot of them. To store values, you use variables.\nIn Python, a variable is a label that you can assign a value to it. And a variable is always associated with a value. For example:\nmessage = 'Hello, World!'\nprint(message)\nOutput:\nHello, World!\nIn this example, message is a variable. It holds the string 'Hello, World!'. The print() function shows the message Hello, World! to the screen.",
+          "duration_minutes": 10
         },
         {
-            "user_id": 2,
-            "username": "jasm2",
-            "module_progress": [
-                {
-                    "module_id": 1,
-                    "completed_tutorials": [
-                        101,
-                        102
-                    ],
-                    "completed_quiz": [
-                        301
-                    ]
-                },
-                {
-                    "module_id": 2,
-                    "completed_tutorials": [
-                        103
-                    ],
-                    "completed_quiz": []
-                },
-                {
-                    "module_id": 3,
-                    "completed_tutorials": [],
-                    "completed_quiz": []
-                }
-            ]
+          "tutorial_id": 104,
+          "title": "Creating variables",
+          "content": "To define a variable, you use the following syntax:\nvariable_name = value\nThe = is the assignment operator. In this syntax, you assign a value to the variable_name.\nThe value can be anything like a number, a string, etc., that you assign to the variable.",
+          "duration_minutes": 10
         }
-    ]
+      ],
+      "quiz": {
+        "quiz_id": 302,
+        "title": "Python Module 2 Quiz",
+        "questions": [
+          {
+            "question_id": 3,
+            "question_text": "How do you create a variable with the numeric value 5?",
+            "options": [
+              "x=5",
+              "x=int(5)",
+              "Both of the answers are correct",
+              "None of the answers are correct"
+            ],
+            "correct_answer": "3"
+          },
+          {
+            "question_id": 4,
+            "question_text": "How do you create a variable with the floating number 2.8?",
+            "options": [
+              "x=2.8",
+              "x=float(2.8)",
+              "Both of the answers are correct",
+              "None of the answers are correct"
+            ],
+            "correct_answer": "3"
+          }
+        ]
+      }
+    }
+  ],
+  "users": [
+    {
+      "user_id": 1,
+      "username": "jodo",
+      "module_progress": [
+        {
+          "module_id": 1,
+          "completed_tutorials": [101],
+          "completed_quiz": [301]
+        },
+        {
+          "module_id": 2,
+          "completed_tutorials": [],
+          "completed_quiz": [302]
+        },
+        {
+          "module_id": 3,
+          "completed_tutorials": [],
+          "completed_quiz": []
+        }
+      ]
+    },
+    {
+      "user_id": 2,
+      "username": "jasm2",
+      "module_progress": [
+        {
+          "module_id": 1,
+          "completed_tutorials": [101, 102],
+          "completed_quiz": [301]
+        },
+        {
+          "module_id": 2,
+          "completed_tutorials": [103],
+          "completed_quiz": []
+        },
+        {
+          "module_id": 3,
+          "completed_tutorials": [],
+          "completed_quiz": []
+        }
+      ]
+    },
+    {
+      "user_id": 8,
+      "username": "trre8",
+      "module_progress": [
+        {
+          "module_id": 1,
+          "completed_tutorials": [],
+          "completed_quiz": []
+        },
+        {
+          "module_id": 2,
+          "completed_tutorials": [],
+          "completed_quiz": []
+        }
+      ]
+    }
+  ]
 }

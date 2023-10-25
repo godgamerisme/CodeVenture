@@ -52,5 +52,23 @@
         "email": "hahaha@gmail.com",
         "password": "blabla",
         "usertype": "younglearner"
+    },
+    {
+        "id": 7,
+        "firstname": "Hahaha",
+        "lastname": "La",
+        "username": "hala7",
+        "email": "test@gmail.com",
+        "password": "hahaha",
+        "usertype": "younglearner"
+    },
+    {
+        "id": 8,
+        "firstname": "Try",
+        "lastname": "Register",
+        "username": "trre8",
+        "email": "try@gmail.com",
+        "password": "blabla",
+        "usertype": "younglearner"
     }
 ]

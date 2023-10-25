@@ -1,16 +1,39 @@
 from User import *
+from database.UserDatabase import UserDatabase
+from database.ModuleDatabase import ModuleDatabase
 
 #TODO: User Authenticate Class needs to take in module array as well to create a data when registering a new user
 class UserAuthenticate:
-    def __init__(self, db, data_obj, users_array):
+    def __init__(self,user_db=UserDatabase("./data/users.json"),module_db=ModuleDatabase("./data/modules.json")):
         """
-        :param db: ModuleDatabase object
+        :param db: Userdatabase object
         :param data_obj: data read from json
         :param users_array: array of User objects
         """
-        self.db = db
-        self.data = data_obj
-        self.users = users_array
+        self.user_db = user_db
+        self.user_data = self.user_db.get_data()
+        self.users = self.user_db.to_user_array()
+        self.module_db = module_db
+        self.module_data = self.module_db.get_data()
+        self.module_array = self.module_db.get_module_array()
+
+    def get_module_array(self):
+        return self.module_array
+    
+    def get_module_data(self):
+        return self.module_data
+    
+    def get_module_db(self):
+        return self.module_db
+
+    def get_users(self):
+        return self.users
+    
+    def get_user_data(self):
+        return self.user_data
+    
+    def get_user_db(self):
+        return self.user_db
 
 
     def validate_name(self, name):
@@ -38,7 +61,7 @@ class UserAuthenticate:
     def register(self, new_firstname, new_lastname, new_password, email, new_usertype):
         if self.validate_name(new_firstname) and self.validate_name(new_lastname) and self.validate_password(new_password) and self.validate_email(email) and self.validate_usertype(new_usertype):
             # Auto generate user ID
-            id = len(self.data) + 1
+            id = len(self.user_data) + 1
 
             #Process the input
             new_firstname = new_firstname[0].upper() + new_firstname[1:].lower()
@@ -54,8 +77,12 @@ class UserAuthenticate:
             pack_data = self.pack_user_data(id, new_firstname, new_lastname, username, email, new_password, new_usertype)
 
             # Add the new object to json as a new user
-            self.data.append(pack_data)
-            self.db.write_data(self.data)
+            self.user_data.append(pack_data)
+            self.user_db.write_data()
+
+            pack_module_progress_data = self.pack_module_progress_data(id,username,len(self.module_array))
+            self.module_data["users"].append(pack_module_progress_data)
+            self.module_db.write_data()
 
             # Create User Object based on usertype
             if new_usertype == "younglearner":
@@ -69,7 +96,7 @@ class UserAuthenticate:
             print("Register successfully\n")
             print(f"Your username is {username}\n")
             print(f"Your password is {new_password}\n")
-            return True
+            return new_user
         else:
             print("Register failed\n")
             return False
@@ -83,6 +110,14 @@ class UserAuthenticate:
             "email": email,
             "password": password,
             "usertype": usertype
+        }
+    
+    def pack_module_progress_data(self, user_id,username,num_of_modules):
+        return {
+            "user_id": user_id,
+            "username": username,
+            "module_progress": [{"module_id": i+1, "completed_tutorials": [], "completed_quiz":[]} for i in range(num_of_modules)]
+
         }
 
     def login(self, username, password):

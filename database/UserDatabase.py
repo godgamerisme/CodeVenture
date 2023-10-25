@@ -11,6 +11,9 @@ class UserDatabase:
         self.filename = filename
         self.data = self.read_data()
 
+    def get_data(self):
+        return self.data
+
     def read_data(self):
         """
         Reads data from json file
@@ -23,12 +26,12 @@ class UserDatabase:
             print(f"File '{self.filename}' not found.")
             return []
 
-    def write_data(self, data):
+    def write_data(self):
         """
         Writes data to json file
         """
         with open(self.filename, 'w') as file:
-            json.dump(data, file, indent=4)
+            json.dump(self.data, file, indent=4)
 
     def to_user_array(self):
         """

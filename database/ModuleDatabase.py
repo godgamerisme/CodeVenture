@@ -1,10 +1,18 @@
 import json
 from Modules import *
-
+from typing import List
 
 class ModuleDatabase:
     def __init__(self, filename):
         self.filename = filename
+        self.data = self.read_data()
+        self.module_array = self.to_module_array()
+
+    def get_data(self):
+        return self.data
+
+    def get_module_array(self)->List[Module]:
+        return self.module_array
 
     def read_data(self):
         """
@@ -20,23 +28,32 @@ class ModuleDatabase:
             print(f"File '{self.filename}' not found.")
             return []
 
-    def write_data(self, data):
+    def write_data(self):
         """
         Writes data to json file
         :param data: data to write to json
         :return: None
         """
         with open(self.filename, 'w') as file:
-            json.dump(data, file, indent=4)
+            json.dump(self.data, file, indent=4)
 
-    def to_module_array(self, data):
+    def get_user_module_progress(self,user_id):
+        """
+        Return the reference to the database entry of the user's module progress
+        """
+        for user in self.data["users"]:
+            if user["user_id"] == user_id:
+                return user["module_progress"]
+        return None
+
+    def to_module_array(self)->List[Module]:
         """
         Converts the data from json to an array of Module objects
         :param data: data read from json
         :return: array of Module objects
         """
-        modules = [Module(**module_data) for module_data in data["modules"]]
-        users = data.get("users", [])
+        modules = [Module(**module_data) for module_data in self.data["modules"]]
+        users = self.data.get("users", [])
         for user_data in users:
             user_id = user_data["user_id"]
             username = user_data["username"]
@@ -57,6 +74,36 @@ class ModuleDatabase:
                     module.add_user_progress(progress)
 
         return modules
+    
+    def complete_tutorial(self,user_id,module_id,tutorial_id):
+        """
+        Complete a tutorial
+        """
+        #Add tutorial id to the user's module progress in module array
+        for module in self.module_array:
+            if module.get_module_id() == module_id:
+                for progress in module.get_user_progress():
+                    if progress.get_user_id() == user_id:
+                        progress.add_completed_tutorial(tutorial_id)
+                        break
+                break
+        
+
+        #Add tutorial id to the user's module progress in database
+        user_module_progress = self.get_user_module_progress(user_id)
+        for progress in user_module_progress:
+            if progress["module_id"] == module_id:
+                if tutorial_id not in progress["completed_tutorials"]:
+                    progress["completed_tutorials"].append(tutorial_id)
+                    break
+                
+        
+        #Write data to json
+        self.write_data()
+        print("Module id: ",module_id)
+        print("Tutorial id: ",tutorial_id)
+
+        
     
 
 if __name__ == "__main__":

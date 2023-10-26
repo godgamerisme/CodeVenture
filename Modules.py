@@ -8,12 +8,34 @@ class Question:
         self.options = [Option(opt) for opt in options]
         self.correct_answer = correct_answer
 
+    def get_question_id(self):
+        return self.question_id
+    
+    def get_question(self):
+        return self.question_text
+    
+    def get_options(self):
+        return self.options
+    
+    def get_correct_answer(self):
+        "Returns the index of the correct answer"""
+        return self.correct_answer
+
 
 class Quiz:
     def __init__(self, quiz_id, title, questions):
         self.quiz_id = quiz_id
         self.title = title
         self.questions = [Question(**q) for q in questions]
+
+    def get_quiz_id(self):
+        return self.quiz_id
+    
+    def get_quiz_title(self):
+        return self.title
+    
+    def get_questions(self)->List[Question]:
+        return self.questions
 
 
 class Tutorial:
@@ -37,12 +59,17 @@ class Tutorial:
 
 
 class Progress:
-    def __init__(self, user_id, username, module_id, completed_tutorials:List[Tutorial], completed_quiz):
+    def __init__(self, user_id, username, module_id, completed_tutorials, completed_quiz):
+        """
+        completed_tutorials is a list of tutorial ids
+        completed_quiz is a list of quiz ids
+        """
         self.user_id = user_id
         self.username = username
         self.module_id = module_id
         self.completed_tutorials = completed_tutorials
-        self.completed_quiz = [quiz for quiz in completed_quiz] if completed_quiz else [] 
+        # self.completed_quiz = [quiz for quiz in completed_quiz] if completed_quiz else [] 
+        self.completed_quiz = completed_quiz
 
     def get_user_id(self):
         return self.user_id
@@ -60,7 +87,12 @@ class Progress:
         return self.completed_quiz
     
     def add_completed_tutorial(self, tutorial_id):
-        self.completed_tutorials.append(tutorial_id)
+        if tutorial_id not in self.completed_tutorials:
+            self.completed_tutorials.append(tutorial_id)
+
+    def add_completed_quiz(self, quiz_id):
+        if quiz_id not in self.completed_quiz:
+            self.completed_quiz.append(quiz_id)
 
 
 class Module:
@@ -80,7 +112,7 @@ class Module:
     def get_tutorials(self):
         return self.tutorials
     
-    def get_quiz(self):
+    def get_quiz(self)->Quiz:
         return self.quiz
     
     def get_user_progress(self):
@@ -118,6 +150,9 @@ class Module:
 class Option:
     def __init__(self, option_text):
         self.option_text = option_text
+
+    def get_option_text(self):
+        return self.option_text
 
 # class UserProgress:
 #     """This class is used to store the progress of currently login user"""

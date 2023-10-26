@@ -45,7 +45,7 @@ class TutorialFrame(tk.Frame):
 
         # Create a Complete Tutorial Outcome text
         self.complete_tutorial_text = tk.StringVar()
-        complete_tutorial_message = tk.Message(master=self, textvariable=self.complete_tutorial_text, font=("Helvetica", 15), width=200)
+        complete_tutorial_message = tk.Message(master=self, textvariable=self.complete_tutorial_text, font=("Helvetica", 15), width=500)
         complete_tutorial_message.grid(row=3, column=0, padx=10, pady=10, columnspan=2)
 
 
@@ -61,7 +61,7 @@ class TutorialFrame(tk.Frame):
         The function that is called when the user clicks on the "Complete Tutorial" button.
         """
         self.modules_db.complete_tutorial(self.user_obj.get_id(),self.module_selected.get_module_id(),self.tutorial_selected.get_tutorial_id())
-        self.tutorialsframe.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+        self.complete_tutorial_text.set("Tutorial Completed!")
 
 
 

@@ -74,12 +74,13 @@ class ModuleDatabase:
                     module.add_user_progress(progress)
 
         return modules
-    
+ 
     def complete_tutorial(self,user_id,module_id,tutorial_id):
         """
         Complete a tutorial
         """
         #Add tutorial id to the user's module progress in module array
+        #Adding to the array will automatically update the data in json
         for module in self.module_array:
             if module.get_module_id() == module_id:
                 for progress in module.get_user_progress():
@@ -87,22 +88,24 @@ class ModuleDatabase:
                         progress.add_completed_tutorial(tutorial_id)
                         break
                 break
-        
-
-        #Add tutorial id to the user's module progress in database
-        user_module_progress = self.get_user_module_progress(user_id)
-        for progress in user_module_progress:
-            if progress["module_id"] == module_id:
-                if tutorial_id not in progress["completed_tutorials"]:
-                    progress["completed_tutorials"].append(tutorial_id)
-                    break
-                
-        
         #Write data to json
         self.write_data()
-        print("Module id: ",module_id)
-        print("Tutorial id: ",tutorial_id)
 
+    def complete_quiz(self,user_id,module_id,quiz_id):
+        """
+        Complete a quiz
+        """
+        #Add quiz id to the user's module progress in module array
+        #Adding to the array will automatically update the data in json
+        for module in self.module_array:
+            if module.get_module_id() == module_id:
+                for progress in module.get_user_progress():
+                    if progress.get_user_id() == user_id:
+                        progress.add_completed_quiz(quiz_id)
+                        break
+                break
+        #Write data to json
+        self.write_data()
         
     
 

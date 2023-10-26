@@ -2,18 +2,19 @@ from User import *
 from database.UserDatabase import UserDatabase
 from database.ModuleDatabase import ModuleDatabase
 from module_manager import ModuleManager
+from user_manager import UserManager
 
 #TODO: User Authenticate Class needs to take in module array as well to create a data when registering a new user
 class UserAuthenticate:
-    def __init__(self,user_db=UserDatabase("./data/users.json")):
+    def __init__(self):
         """
         :param db: Userdatabase object
         :param data_obj: data read from json
         :param users_array: array of User objects
         """
-        self.user_db = user_db
+        self.user_db = UserManager.get_instance().get_user_db()
         self.user_data = self.user_db.get_data()
-        self.users = self.user_db.to_user_array()
+        self.users = self.user_db.get_user_array()
         self.module_db = ModuleManager.get_instance().get_module_db()
         self.module_data = self.module_db.get_data()
         self.module_array = self.module_db.get_module_array()
@@ -74,6 +75,15 @@ class UserAuthenticate:
 
             new_usertype = new_usertype.lower()
 
+            # Create User Object based on usertype
+            if new_usertype == "younglearner":
+                new_user = YoungLearner(id, new_firstname, new_lastname, username, email, new_password,new_usertype)
+            elif new_usertype == "educator":
+                new_user = Educator(id, new_firstname, new_lastname, username, email, new_password,new_usertype)
+            elif new_usertype == "parent":
+                new_user = Parent(id, new_firstname, new_lastname, username, email, new_password,new_usertype)
+            self.users.append(new_user)
+
             # Create a dictionary for the new object
             pack_data = self.pack_user_data(id, new_firstname, new_lastname, username, email, new_password, new_usertype)
 
@@ -84,15 +94,6 @@ class UserAuthenticate:
             pack_module_progress_data = self.pack_module_progress_data(id,username,len(self.module_array))
             self.module_data["users"].append(pack_module_progress_data)
             self.module_db.write_data()
-
-            # Create User Object based on usertype
-            if new_usertype == "younglearner":
-                new_user = YoungLearner(id, new_firstname, new_lastname, username, email, new_password)
-            elif new_usertype == "educator":
-                new_user = Educator(id, new_firstname, new_lastname, username, email, new_password)
-            elif new_usertype == "parent":
-                new_user = Parent(id, new_firstname, new_lastname, username, email, new_password)
-            self.users.append(new_user)
 
             print("Register successfully\n")
             print(f"Your username is {username}\n")

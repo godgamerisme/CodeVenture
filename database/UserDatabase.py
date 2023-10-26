@@ -1,5 +1,6 @@
 import json
 from User import *
+from typing import List
 
 
 class UserDatabase:
@@ -10,6 +11,10 @@ class UserDatabase:
         """
         self.filename = filename
         self.data = self.read_data()
+        self.user_array = self.to_user_array()
+
+    def get_user_array(self)->List[User]:
+        return self.user_array
 
     def get_data(self):
         return self.data
@@ -33,7 +38,7 @@ class UserDatabase:
         with open(self.filename, 'w') as file:
             json.dump(self.data, file, indent=4)
 
-    def to_user_array(self):
+    def to_user_array(self)->List[User]:
         """
         Converts the data from json to an array of User objects
         """
@@ -42,13 +47,13 @@ class UserDatabase:
             if user["usertype"] == "younglearner":
                 users.append(
                     YoungLearner(user["id"], user["firstname"], user["lastname"], user["username"], user["email"],
-                                 user["password"]))
+                                 user["password"], user["usertype"]))
             elif user["usertype"] == "educator":
                 users.append(Educator(user["id"], user["firstname"], user["lastname"], user["username"], user["email"],
-                                      user["password"]))
+                                      user["password"], user["usertype"]))
             elif user["usertype"] == "parent":
                 users.append(Parent(user["id"], user["firstname"], user["lastname"], user["username"], user["email"],
-                                    user["password"]))
+                                    user["password"], user["usertype"]))
         return users
 
 

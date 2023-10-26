@@ -2,13 +2,17 @@ from typing import List
 from Modules import *
 
 class User:
-    def __init__(self, id, firstname, lastname, username, email, password):
+    def __init__(self, id, firstname, lastname, username, email, password, usertype):
         self.id = id
         self.firstname = firstname
         self.lastname = lastname
         self.username = username
         self.email = email
         self.password = password
+        self.usertype = usertype
+
+    def get_usertype(self):
+        return self.usertype
 
     def get_id(self):
         return self.id
@@ -27,14 +31,17 @@ class User:
     
     def get_password(self):
         return self.password
+    
+    def get_fullname(self):
+        return self.firstname + " " + self.lastname
 
     def __str__(self):
         return f"User: {self.id}, {self.firstname}, {self.lastname}, {self.username}, {self.email}, {self.password}"
 
 
 class YoungLearner(User):
-    def __init__(self, id, firstname, lastname, username, email, password):
-        super().__init__(id, firstname, lastname, username, email, password)
+    def __init__(self, id, firstname, lastname, username, email, password, usertype):
+        super().__init__(id, firstname, lastname, username, email, password, usertype)
         self.progress= []
         self.all_tutorials_completed = []
         self.all_quizzes_completed = []
@@ -71,10 +78,10 @@ class YoungLearner(User):
 
 
 class Educator(User):
-    def __init__(self, id, firstname, lastname, username, email, password):
-        super().__init__(id, firstname, lastname, username, email, password)
+    def __init__(self, id, firstname, lastname, username, email, password, usertype):
+        super().__init__(id, firstname, lastname, username, email, password, usertype)
     
 
 class Parent(User):
-    def __init__(self, id, firstname, lastname, username, email, password):
-        super().__init__(id, firstname, lastname, username, email, password)
+    def __init__(self, id, firstname, lastname, username, email, password, usertype):
+        super().__init__(id, firstname, lastname, username, email, password, usertype)

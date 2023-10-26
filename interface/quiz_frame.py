@@ -20,13 +20,13 @@ class QuizFrame(tk.Frame):
         self.module_selected = module_selected
         self.current_question = current_question
 
-        # Create a label for the quiz title
-        quiz_title_label = tk.Label(master=self, text="Take Quiz", font=("Helvetica", 20, "bold"))
-        quiz_title_label.grid(row=0, column=0, padx=30, pady=15,columnspan=2,rowspan=2)
-
         # Get quiz question from module selected
         self.quiz = self.module_selected.get_quiz()
         self.questions = self.quiz.get_questions()
+
+        # Create a label for the quiz title
+        quiz_title_label = tk.Label(master=self, text="Take Quiz", font=("Helvetica", 20, "bold"))
+        quiz_title_label.grid(row=0, column=0, padx=30, pady=15,columnspan=2)
 
         # Create a label for the quiz question
         self.quiz_question_label = tk.Label(master=self, text=self.questions[self.current_question].get_question(), font=("Helvetica", 18, "bold"),wraplength=700,justify=tk.LEFT)

@@ -24,7 +24,7 @@ class ModuleManager:
         else:
             ModuleManager.__instance = self
             self.modules_db = ModuleDatabase("./data/modules.json")
-            self.modules = self.modules_db.to_module_array()
+            self.modules = self.modules_db.get_module_array()
 
     def get_module_db(self):
         """

@@ -1,5 +1,4 @@
 import tkinter as tk
-from database.UserDatabase import UserDatabase
 from authentication.UserAuthenticate import UserAuthenticate
 
 class RegisterFrame(tk.Frame):

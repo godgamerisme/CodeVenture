@@ -104,7 +104,7 @@ class UserAuthenticate:
             return False
 
     def pack_user_data(self, id, firstname, lastname, username, email, password, usertype):
-        return {
+        obj ={
             "id": id,
             "firstname": firstname,
             "lastname": lastname,
@@ -113,7 +113,9 @@ class UserAuthenticate:
             "password": password,
             "usertype": usertype
         }
-    
+        if usertype == "parent":
+            obj["children"] = []
+        return obj
     def pack_module_progress_data(self, user_id,username,num_of_modules):
         return {
             "user_id": user_id,

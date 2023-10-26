@@ -5,6 +5,7 @@ from User import *
 from interface.student_dashboard_frame import StudentDashboardFrame
 from interface.reset_password_frame import ResetPasswordFrame
 from interface.educator_dashboard_frame import EducatorDashboardFrame
+from interface.parent_dashboard_frame import ParentDashboardFrame
 
 class LoginFrame(tk.Frame):
     """
@@ -90,6 +91,10 @@ class LoginFrame(tk.Frame):
                 # Create and display the Educator Dashboard
                 educator_dashboard_frame = EducatorDashboardFrame(self.master, self, user,modules_db)
                 educator_dashboard_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+            elif isinstance(user, Parent):
+                # Create and display the Parent Dashboard
+                parent_dashboard_frame = ParentDashboardFrame(self.master, self, user,modules_db)
+                parent_dashboard_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
     def navigate_to_homepage(self):
         """

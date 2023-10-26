@@ -17,6 +17,9 @@ class UserDatabase:
         return self.user_array
 
     def get_data(self):
+        """
+        Returns the data read from json
+        """
         return self.data
 
     def read_data(self):
@@ -53,7 +56,7 @@ class UserDatabase:
                                       user["password"], user["usertype"]))
             elif user["usertype"] == "parent":
                 users.append(Parent(user["id"], user["firstname"], user["lastname"], user["username"], user["email"],
-                                    user["password"], user["usertype"]))
+                                    user["password"], user["usertype"], user["children"]))
         return users
 
 

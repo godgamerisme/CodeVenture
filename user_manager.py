@@ -1,4 +1,5 @@
 from database.UserDatabase import UserDatabase
+from User import Parent
 
 class UserManager:
     """
@@ -71,3 +72,20 @@ class UserManager:
         """
         return [user for user in self.users if user.get_usertype() == "younglearner"]
     
+    def update_user(self):
+        """
+        Update a user's data
+        """
+        self.user_db.write_data()
+
+    def get_children(self, parent:Parent):
+        """
+        Map the parent's children to the user objects
+        """
+        children = []
+        for child_email in parent.get_children():
+            for user in self.users:
+                if user.get_email() == child_email:
+                    children.append(user)
+                    break
+        return children    

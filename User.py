@@ -1,5 +1,6 @@
 from typing import List
 from Modules import *
+# from user_manager import UserManager
 
 class User:
     def __init__(self, id, firstname, lastname, username, email, password, usertype):
@@ -83,5 +84,21 @@ class Educator(User):
     
 
 class Parent(User):
-    def __init__(self, id, firstname, lastname, username, email, password, usertype):
+    def __init__(self, id, firstname, lastname, username, email, password, usertype, children:List[str]):
         super().__init__(id, firstname, lastname, username, email, password, usertype)
+        self.children = children
+
+    def get_children(self):
+        return self.children
+    
+    def add_child(self, child_email:str):
+        if len(self.children)<2:
+            if child_email not in self.children:
+                self.children.append(child_email)
+            else:
+                return "Child already registered"
+            return "Child added successfully"
+        else:
+            return "You have reached the maximum number of children"
+
+   

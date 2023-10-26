@@ -24,7 +24,10 @@
         "username": "aljo3",
         "email": "aljo0003@hotmail.com",
         "password": "alice123",
-        "usertype": "parent"
+        "usertype": "parent",
+        "children": [
+            "jodo0001@hotmail.com"
+        ]
     },
     {
         "id": 4,

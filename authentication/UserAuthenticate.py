@@ -95,6 +95,13 @@ class UserAuthenticate:
             self.module_data["users"].append(pack_module_progress_data)
             self.module_db.write_data()
 
+            # Read all data from json again
+            self.user_data = self.user_db.read_data()
+            self.users = self.user_db.to_user_array()
+
+            self.module_data = self.module_db.read_data()
+            self.module_array = self.module_db.to_module_array()
+
             print("Register successfully\n")
             print(f"Your username is {username}\n")
             print(f"Your password is {new_password}\n")

@@ -6,7 +6,7 @@ class RegisterFrame(tk.Frame):
     The class definition for the RegisterFrame class.
     """
     
-    def __init__(self,master,homepage_frame):
+    def __init__(self,master,homepage_frame,auth:UserAuthenticate):
         """
         The constructor for the LoginFrame class
         :param master: The parent widget.
@@ -15,6 +15,7 @@ class RegisterFrame(tk.Frame):
         super().__init__(master)
         self.master = master
         self.homepage_frame = homepage_frame
+        self.auth = auth
 
         # Create a Register Title
         register_title = tk.Label(master=self, text="Create Account", font=("Helvetica", 24,"bold"))
@@ -92,8 +93,7 @@ class RegisterFrame(tk.Frame):
         """ 
         self.register_text.set("Register Successful")
         # Create instance of UserAuthenticate class
-        auth = UserAuthenticate()
-        user = auth.register(self.first_name.get(),self.last_name.get(),self.password.get(),self.email.get(),self.user_type.get())
+        user = self.auth.register(self.first_name.get(),self.last_name.get(),self.password.get(),self.email.get(),self.user_type.get())
         if(user): 
             self.register_text.set("Register Successful")
             self.username_text.set("Your username is " + user.username)

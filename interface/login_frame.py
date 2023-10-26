@@ -12,7 +12,7 @@ class LoginFrame(tk.Frame):
     The class definition for the LoginFrame class.
     """
 
-    def __init__(self, master, homepage_frame):
+    def __init__(self, master, homepage_frame,auth:UserAuthenticate):
         """
         The constructor for the LoginFrame class
         :param master: The parent widget.
@@ -23,7 +23,7 @@ class LoginFrame(tk.Frame):
         self.master = master
         self.homepage_frame = homepage_frame
 
-        self.auth = self.setUpAuthenticate()
+        self.auth = auth
         
         # Create a Login Title
         login_title = tk.Label(master=self, text="Good to see you!", font=("Helvetica", 24,"bold"))
@@ -110,9 +110,4 @@ class LoginFrame(tk.Frame):
         self.place_forget()
         reset_password_frame = ResetPasswordFrame(self.master, self,self.auth)
         reset_password_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
-
-    def setUpAuthenticate(self):
-        # Create instance of UserAuthenticate class
-        auth = UserAuthenticate()
-        return auth
         

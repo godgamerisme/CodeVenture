@@ -84,7 +84,7 @@ class Educator(User):
     
 
 class Parent(User):
-    def __init__(self, id, firstname, lastname, username, email, password, usertype, children:List[str]):
+    def __init__(self, id, firstname, lastname, username, email, password, usertype, children:List[str]=[]):
         super().__init__(id, firstname, lastname, username, email, password, usertype)
         self.children = children
 

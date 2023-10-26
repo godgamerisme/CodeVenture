@@ -1,6 +1,7 @@
 import tkinter as tk
 from interface.register_frame import RegisterFrame
 from interface.login_frame import LoginFrame
+from authentication.UserAuthenticate import UserAuthenticate
 
 
 class HomePageFrame(tk.Frame):
@@ -15,6 +16,10 @@ class HomePageFrame(tk.Frame):
         """
         super().__init__(master=master)
         self.master = master
+
+        # Set up authentication
+        self.auth = UserAuthenticate()
+
         self.grid_columnconfigure(0, weight=1, minsize=20)
 
         home_page_title = tk.Label(self, text="Welcome to CodeVenture", font=("Helvetica", 24,"bold"))
@@ -72,7 +77,7 @@ class HomePageFrame(tk.Frame):
         Function to handle the action when the "Login" button is clicked.
         """
         self.place_forget()
-        login_frame = LoginFrame(self.master, self)
+        login_frame = LoginFrame(self.master, self,self.auth)
         login_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
                 
 
@@ -81,6 +86,6 @@ class HomePageFrame(tk.Frame):
         Function to handle the action when the "Register" button is clicked.
         """
         self.place_forget()
-        register_frame = RegisterFrame(self.master, self)
+        register_frame = RegisterFrame(self.master, self,self.auth)
         register_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
         

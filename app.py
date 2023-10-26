@@ -21,7 +21,6 @@ class Interface(tk.Tk):
         self.geometry(f"{width}x{height}")
         self.homepage =HomePageFrame(self)
         
-
         #position at the top center
         self.homepage.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
         

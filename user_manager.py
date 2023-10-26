@@ -72,10 +72,12 @@ class UserManager:
         """
         return [user for user in self.users if user.get_usertype() == "younglearner"]
     
-    def update_user(self):
+    def update_register_child(self):
         """
-        Update a user's data
+        Update the parent's children in the user array
+        
         """
+        #Update the parent's children in the user array
         self.user_db.write_data()
 
     def get_children(self, parent:Parent):

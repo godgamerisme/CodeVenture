@@ -59,7 +59,7 @@ class RegisterChildFrame(tk.Frame):
         
         # Try adding child to parent
         self.register_child_text.set(self.user_obj.add_child(email))
-        UserManager.get_instance().update_user()
+        UserManager.get_instance().update_register_child()
 
     def navigate_to_parent_dashboard(self):
         """

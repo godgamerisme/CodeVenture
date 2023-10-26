@@ -1,10 +1,11 @@
 from User import *
 from database.UserDatabase import UserDatabase
 from database.ModuleDatabase import ModuleDatabase
+from module_manager import ModuleManager
 
 #TODO: User Authenticate Class needs to take in module array as well to create a data when registering a new user
 class UserAuthenticate:
-    def __init__(self,user_db=UserDatabase("./data/users.json"),module_db=ModuleDatabase("./data/modules.json")):
+    def __init__(self,user_db=UserDatabase("./data/users.json")):
         """
         :param db: Userdatabase object
         :param data_obj: data read from json
@@ -13,7 +14,7 @@ class UserAuthenticate:
         self.user_db = user_db
         self.user_data = self.user_db.get_data()
         self.users = self.user_db.to_user_array()
-        self.module_db = module_db
+        self.module_db = ModuleManager.get_instance().get_module_db()
         self.module_data = self.module_db.get_data()
         self.module_array = self.module_db.get_module_array()
 

@@ -2,6 +2,7 @@ import tkinter as tk
 from User import *
 from database.ModuleDatabase import ModuleDatabase
 from interface.modules_frame import ModulesFrame
+from interface.check_progress_frame import CheckProgressFrame
 
 class StudentDashboardFrame(tk.Frame):
     """
@@ -42,7 +43,7 @@ class StudentDashboardFrame(tk.Frame):
         view_modules_button.grid(row=2, column=0, padx=10, pady=20)
 
         # Create a check progress button
-        check_progress_button = tk.Button(master=container, text="Check Progress", font=("Helvetica", 15), width=15,background="#FFCC80",
+        check_progress_button = tk.Button(master=container, text="Check Progress", font=("Helvetica", 15), width=15,background="#FFCC80",command=self.navigate_to_check_progress,
                                           height=2, borderwidth=2, relief=tk.RAISED)
         check_progress_button.grid(row=3, column=0, padx=10, pady=20)
 
@@ -60,6 +61,14 @@ class StudentDashboardFrame(tk.Frame):
         self.student_dashboard_image = tk.PhotoImage(file=image_path)
         self.display_image()
         # self.student_dashboard_canvas.create_image(0, 0, anchor=tk.NW, image=self.student_dashboard_image)
+
+    def navigate_to_check_progress(self):
+        """
+        The function to navigate to the check progress frame.
+        """
+        self.place_forget()
+        self.check_progress_frame = CheckProgressFrame(self.master,self,self.user_obj,self.modules_db)
+        self.check_progress_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
     def navigate_to_modules(self):
         """

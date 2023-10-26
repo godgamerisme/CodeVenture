@@ -1,3 +1,6 @@
+from typing import List
+from Modules import *
+
 class User:
     def __init__(self, id, firstname, lastname, username, email, password):
         self.id = id
@@ -32,6 +35,39 @@ class User:
 class YoungLearner(User):
     def __init__(self, id, firstname, lastname, username, email, password):
         super().__init__(id, firstname, lastname, username, email, password)
+        self.progress= []
+        self.all_tutorials_completed = []
+        self.all_quizzes_completed = []
+
+    def get_progress(self):
+        return self.progress
+    
+    def get_all_tutorials_completed(self):
+        return self.all_tutorials_completed
+    
+    def get_all_quizzes_completed(self):
+        return self.all_quizzes_completed
+    
+    def populate_user_progress(self, module_array:List[Module]):
+        """
+        Search through the module array and add the user's progress to the user object
+        """
+        #Reset the progress list,all tutorials completed and all quizzes completed
+        self.progress = []
+        self.all_tutorials_completed = []
+        self.all_quizzes_completed = []
+
+        for module in module_array:
+            for progress in module.get_user_progress():
+                if progress.get_user_id() == self.id:
+                    #Check if the progress is already in the user's progress list
+                    if progress not in self.progress:
+                        self.progress.append(progress)
+                        break
+        #populate all tutorials completed and all quizzes completed
+        for progress in self.progress:
+            self.all_tutorials_completed.extend(progress.get_completed_tutorials())
+            self.all_quizzes_completed.extend(progress.get_completed_quiz())
 
 
 class Educator(User):

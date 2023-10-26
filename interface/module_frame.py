@@ -3,6 +3,7 @@ from database.ModuleDatabase import ModuleDatabase
 from Modules import *
 from interface.tutorials_frame import TutorialsFrame
 from User import *
+from interface.quiz_frame import QuizFrame
 
 class ModuleFrame(tk.Frame):
     """
@@ -30,7 +31,7 @@ class ModuleFrame(tk.Frame):
         view_tutorials_button.grid(row=1, column=0, padx=10, pady=10)
 
         # Create a Take Quiz Button
-        take_quiz_button = tk.Button(master=self, text="Take Quiz", font=("Helvetica", 15,"bold"), width=15,background="#FFCC80",
+        take_quiz_button = tk.Button(master=self, text="Take Quiz", font=("Helvetica", 15,"bold"), width=15,background="#FFCC80",command=self.navigate_to_quiz,
                                      height=2, borderwidth=2, relief=tk.RAISED)
         take_quiz_button.grid(row=2, column=0, padx=10, pady=10)
 
@@ -59,6 +60,14 @@ class ModuleFrame(tk.Frame):
         self.place_forget()
         self.tutorialsframe = TutorialsFrame(self.master,self,self.user_obj,self.modules_db,self.module_selected)
         self.tutorialsframe.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+
+    def navigate_to_quiz(self):
+        """
+        The function that is called when the user clicks on the "Take Quiz" button.
+        """
+        self.place_forget()
+        self.quizframe = QuizFrame(self.master,self,self.user_obj,self.modules_db,self.module_selected)
+        self.quizframe.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
 
         

@@ -25,7 +25,7 @@
             "question_id": 1,
             "question_text": "What is the output of 'print(3 + 5)'?",
             "options": ["6", "8", "2", "None of the above"],
-            "correct_answer": "2"
+            "correct_answer": 1
           },
           {
             "question_id": 2,
@@ -36,7 +36,7 @@
               " echo('Hello World');",
               " print('Hello World')"
             ],
-            "correct_answer": "4"
+            "correct_answer": 3
           }
         ]
       }
@@ -71,7 +71,7 @@
               "Both of the answers are correct",
               "None of the answers are correct"
             ],
-            "correct_answer": "3"
+            "correct_answer": 2
           },
           {
             "question_id": 4,
@@ -82,7 +82,7 @@
               "Both of the answers are correct",
               "None of the answers are correct"
             ],
-            "correct_answer": "3"
+            "correct_answer": 2
           }
         ]
       }

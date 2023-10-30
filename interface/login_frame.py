@@ -23,14 +23,17 @@ class LoginFrame(tk.Frame):
         self.master = master
         self.homepage_frame = homepage_frame
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         self.auth = auth
         
         # Create a Login Title
-        login_title = tk.Label(master=self, text="Good to see you!", font=("Helvetica", 24,"bold"))
+        login_title = tk.Label(master=self, text="Good to see you!", font=("Helvetica", 24,"bold"),bg="white")
         login_title.grid(row=0,columnspan=2,padx=10,pady=10)
 
         # Create a Username Label
-        username_label = tk.Label(master=self, text="Username",font=("Helvetica", 12))
+        username_label = tk.Label(master=self, text="Username",font=("Helvetica", 12),bg="white")
         username_label.grid(row=1,column=0,padx=10,pady=(10,0),sticky="w")
 
         # Create a Username Entry
@@ -39,7 +42,7 @@ class LoginFrame(tk.Frame):
         self.username_entry.grid(row=2,column=0,padx=10,pady=(0,10),sticky="ew",columnspan=2)
 
         # Create a Password Label
-        password_label = tk.Label(master=self, text="Password",font=("Helvetica", 12))
+        password_label = tk.Label(master=self, text="Password",font=("Helvetica", 12),bg="white")
         password_label.grid(row=3,column=0,padx=10,pady=(10,0),sticky="w")
 
         # Create a Password Entry
@@ -65,7 +68,7 @@ class LoginFrame(tk.Frame):
 
         # Create a Login outcome message
         self.login_text = tk.StringVar()
-        login_message = tk.Message(master=self, textvariable=self.login_text, width=150,font=("Helvetica", 9))
+        login_message = tk.Message(master=self, textvariable=self.login_text, width=300,font=("Helvetica", 9),bg="white")
         login_message.grid(row=7,columnspan=2,padx=10,pady=10)
 
     def authenticate_login(self):
@@ -95,6 +98,9 @@ class LoginFrame(tk.Frame):
                 # Create and display the Parent Dashboard
                 parent_dashboard_frame = ParentDashboardFrame(self.master, self, user,modules_db)
                 parent_dashboard_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+        else:
+            # Display error message
+            self.login_text.set("Login Failed! Invalid username or password")
 
     def navigate_to_homepage(self):
         """

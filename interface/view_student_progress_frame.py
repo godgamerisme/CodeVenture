@@ -21,6 +21,9 @@ class ViewStudentProgressFrame(tk.Frame):
         self.modules_db = modules_db
         self.current_student = current_student
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         # Get all the young learners
         self.all_young_learners = UserManager.get_instance().get_all_young_learners()
 
@@ -28,11 +31,11 @@ class ViewStudentProgressFrame(tk.Frame):
         self.young_learners = self.all_young_learners[self.current_student:self.current_student+6]
 
         # Create a label for select student
-        select_student_label = tk.Label(master=self, text="Select Student", font=("Helvetica", 20, "bold"))
+        select_student_label = tk.Label(master=self, text="Select Student", font=("Helvetica", 20, "bold"), bg="white")
         select_student_label.grid(row=0, column=0, padx=10, pady=10,columnspan=3)
 
         # Create a Frame to hold the buttons
-        student_buttons_frame = tk.Frame(master=self)
+        student_buttons_frame = tk.Frame(master=self, bg="white")
         student_buttons_frame.grid(row=1, column=0, padx=10, pady=10,columnspan=4)
 
         # Create buttons for each young learner, each button will display the young learner's full name,
@@ -40,7 +43,7 @@ class ViewStudentProgressFrame(tk.Frame):
         self.student_buttons = []
         for i, young_learner in enumerate(self.young_learners):
             # Create a canvas for the circle, the circle is on the left of the button
-            student_circle_canvas = tk.Canvas(master=student_buttons_frame, width=50, height=50)
+            student_circle_canvas = tk.Canvas(master=student_buttons_frame, width=50, height=50, bg="white",highlightthickness=0)
             student_circle_canvas.grid(row=int(i//2)+1, column=(i%2)*2, padx=10, pady=10)
 
             # Calculate the center coordinates of the canvas

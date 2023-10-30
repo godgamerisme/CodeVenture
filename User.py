@@ -92,7 +92,7 @@ class Parent(User):
         return self.children
     
     def add_child(self, child_email:str):
-        if len(self.children)<2:
+        if len(self.children)<1:
             if child_email not in self.children:
                 self.children.append(child_email)
             else:

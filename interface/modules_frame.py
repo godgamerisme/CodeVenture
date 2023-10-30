@@ -18,6 +18,9 @@ class ModulesFrame(tk.Frame):
         self.user_obj = user_obj
         self.modules_db = modules_db
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         self.modules_array = self.modules_db.get_module_array()
 
         # Create a list to store the frame widgets
@@ -25,10 +28,10 @@ class ModulesFrame(tk.Frame):
 
         # Create frames and add them to the frames list
         for module in self.modules_array:
-            module_frame = tk.Frame(master=self)
+            module_frame = tk.Frame(master=self, bg="white")
             self.frames.append(module_frame)
 
-            circle_canvas = tk.Canvas(master=module_frame, width=50, height=50)
+            circle_canvas = tk.Canvas(master=module_frame, width=50, height=50, bg="white",highlightthickness=0)
             circle_canvas.grid(row=0, column=0, padx=10, pady=10)
 
             # Calculate the center coordinates of the canvas
@@ -52,7 +55,7 @@ class ModulesFrame(tk.Frame):
             circle_canvas.create_text(center_x, center_y, text=number, font=("Helvetica", 25, "bold"), fill="white")
 
             # Create label for module name
-            module_name_label = tk.Label(master=module_frame, text=module.get_module_name(), font=("Helvetica", 20, "bold"))
+            module_name_label = tk.Label(master=module_frame, text=module.get_module_name(), font=("Helvetica", 20, "bold"), bg="white")
             module_name_label.grid(row=1, column=0, padx=10, pady=10,rowspan=2)
 
             # Create button for entering module

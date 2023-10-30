@@ -65,6 +65,15 @@ class UserManager:
             if user.get_user_id() == user_id:
                 return user.get_fullname()
         return None
+    
+    def get_user_by_email(self, email):
+        """
+        Get a user by its email
+        """
+        for user in self.users:
+            if user.get_email() == email:
+                return user
+        return None
 
     def get_all_young_learners(self):
         """

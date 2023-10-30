@@ -20,8 +20,11 @@ class TutorialsFrame(tk.Frame):
         self.modules_db = modules_db
         self.module_selected = module_selected
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         # Create a label for the module name
-        module_name_label = tk.Label(master=self, text=self.module_selected.get_module_name(), font=("Helvetica", 20, "bold"))
+        module_name_label = tk.Label(master=self, text=self.module_selected.get_module_name(), font=("Helvetica", 20, "bold"), bg="white")
         module_name_label.grid(row=0, column=0, padx=10, pady=10, columnspan=len(self.module_selected.get_tutorials()))
 
         # Create a list to store the frame widgets
@@ -30,10 +33,10 @@ class TutorialsFrame(tk.Frame):
 
         # Create frames and add them to the frames list
         for i,tutorial in enumerate(self.tutorials):
-            tutorial_frame = tk.Frame(master=self)
+            tutorial_frame = tk.Frame(master=self, bg="white")
             self.frames.append(tutorial_frame)
 
-            circle_canvas = tk.Canvas(master=tutorial_frame, width=50, height=50)
+            circle_canvas = tk.Canvas(master=tutorial_frame, width=50, height=50,bg="white",highlightthickness=0)
             circle_canvas.grid(row=0, column=0, padx=10, pady=10)
 
             # Calculate the center coordinates of the canvas
@@ -57,7 +60,7 @@ class TutorialsFrame(tk.Frame):
             circle_canvas.create_text(center_x, center_y, text=number, font=("Helvetica", 25, "bold"), fill="white")
 
             # Create a label for the tutorial name
-            tutorial_name_label = tk.Label(master=tutorial_frame, text=tutorial.get_tutorial_name(), font=("Helvetica", 15, "bold"),wraplength=200,width=20,height=3)
+            tutorial_name_label = tk.Label(master=tutorial_frame, text=tutorial.get_tutorial_name(), font=("Helvetica", 15, "bold"),wraplength=200,width=20,height=3, bg="white")
             tutorial_name_label.grid(row=1, column=0, padx=10, pady=10,rowspan=2)
 
             # Create enter tutorial button

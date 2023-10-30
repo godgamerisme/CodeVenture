@@ -21,14 +21,17 @@ class TutorialFrame(tk.Frame):
         self.module_selected = module_selected
         self.tutorial_selected = tutorial_selected
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         # Create a label for the tutorial name
         tutorial_name_label = tk.Label(master=self, text=self.tutorial_selected.get_tutorial_name(),
-                                       font=("Helvetica", 20, "bold"))
+                                       font=("Helvetica", 20, "bold"), bg="white")
         tutorial_name_label.grid(row=0, column=0, padx=10, pady=10,columnspan=2)
 
         # Create a label for the tutorial content
         tutorial_content_label = tk.Label(master=self, text=self.tutorial_selected.get_tutorial_content(),
-                                          font=("Helvetica", 15), wraplength=700, justify=tk.LEFT)
+                                          font=("Helvetica", 15), wraplength=700, justify=tk.LEFT, bg="white")
         tutorial_content_label.grid(row=1, column=0, padx=10, pady=10)
 
         # Create a Back Button
@@ -45,7 +48,7 @@ class TutorialFrame(tk.Frame):
 
         # Create a Complete Tutorial Outcome text
         self.complete_tutorial_text = tk.StringVar()
-        complete_tutorial_message = tk.Message(master=self, textvariable=self.complete_tutorial_text, font=("Helvetica", 15), width=500)
+        complete_tutorial_message = tk.Message(master=self, textvariable=self.complete_tutorial_text, font=("Helvetica", 15), width=500, bg="white")
         complete_tutorial_message.grid(row=3, column=0, padx=10, pady=10, columnspan=2)
 
 

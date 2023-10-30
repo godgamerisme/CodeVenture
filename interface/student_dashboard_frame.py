@@ -19,22 +19,25 @@ class StudentDashboardFrame(tk.Frame):
         self.user_obj = user_obj
         self.modules_db = modules_db
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         # for row_count in range(5):
         #     self.master.rowconfigure(row_count, weight=1, uniform="row")
 
         # self.master.columnconfigure(0, weight=1, uniform="col")
 
         # Create a container to hold the widgets
-        container = tk.Frame(master=self)
+        container = tk.Frame(master=self, bg="white")
         container.grid(row=0, column=0, padx=10, pady=10)
 
         # Create a welcome message
         welcome_message = tk.Label(master=container, text="Welcome back,",
-                                   font=("Helvetica", 24, "bold"))
+                                   font=("Helvetica", 24, "bold"), bg="white")
         welcome_message.grid(row=0, column=0, padx=10, pady=10)
 
         # Create a username label
-        username_label = tk.Label(master=container, text=f"{self.user_obj.get_firstname()}!",font=("Helvetica", 24, "bold"))
+        username_label = tk.Label(master=container, text=f"{self.user_obj.get_firstname()}!",font=("Helvetica", 24, "bold"), bg="white")
         username_label.grid(row=1, column=0, padx=10, pady=(5,10))
 
         # Create a view modules button
@@ -53,7 +56,7 @@ class StudentDashboardFrame(tk.Frame):
         logout_button.grid(row=4, column=0, padx=10, pady=20)
 
         # Create a canvas for the image
-        self.student_dashboard_canvas = tk.Canvas(master=self, width=400, height=450)
+        self.student_dashboard_canvas = tk.Canvas(master=self, width=400, height=450, bg="white",highlightthickness=0)
         self.student_dashboard_canvas.grid(row=0, column=1, columnspan=3, rowspan=3)
 
         # Insert the image onto the canvas
@@ -77,8 +80,6 @@ class StudentDashboardFrame(tk.Frame):
         self.place_forget()
         self.modules_frame = ModulesFrame(self.master,self,self.user_obj,self.modules_db)
         self.modules_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
-
-
 
     def display_image(self):
         # Get the original image dimensions

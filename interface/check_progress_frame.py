@@ -18,6 +18,9 @@ class CheckProgressFrame(tk.Frame):
         self.user_obj = user_obj
         self.modules_db = modules_db
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         # populate user progress
         self.user_obj.populate_user_progress(self.modules_db.get_module_array())
 
@@ -29,11 +32,11 @@ class CheckProgressFrame(tk.Frame):
         self.quiz_completion_percentage = self.__calculate_percentage_completion(len(self.all_quizzes_completed),ModuleManager.get_instance().calculate_number_of_quizzes())
 
         # Create a container to hold the widgets
-        container = tk.Frame(master=self)
+        container = tk.Frame(master=self, bg="white")
         container.grid(row=0, column=0, padx=10, pady=10)
 
         # Create a canvas for the image
-        self.check_progress_canvas = tk.Canvas(master=container, width=200, height=200)
+        self.check_progress_canvas = tk.Canvas(master=container, width=200, height=200, bg="white",highlightthickness=0)
         self.check_progress_canvas.grid(row=0, column=0, padx=10, pady=10)
 
         # Insert the image onto the canvas
@@ -42,11 +45,11 @@ class CheckProgressFrame(tk.Frame):
         self.check_progress_canvas.create_image(100,100, image=self.check_progress_img)
 
         # Create a label for the title
-        title_label = tk.Label(master=container, text="Progress Tracking", font=("Helvetica", 25, "bold"))
+        title_label = tk.Label(master=container, text="Progress Tracking", font=("Helvetica", 25, "bold"), bg="white")
         title_label.grid(row=0, column=1, padx=10, pady=10, sticky=tk.W)
 
         # Create another container to hold the widgets ,which is tutorial progress frame and quiz progress frame
-        container2 = tk.Frame(master=self)
+        container2 = tk.Frame(master=self, bg="white")
         container2.grid(row=1, column=0, padx=10, pady=10)
 
         # Create a frame for tutorial Progress below the container
@@ -54,15 +57,15 @@ class CheckProgressFrame(tk.Frame):
         tutorial_progress_frame.grid(row=0, column=0, padx=10, pady=10,sticky=tk.W)
 
         # Create a label for the tutorial progress title
-        tutorial_progress_title_label = tk.Label(master=tutorial_progress_frame, text="Tutorial Progress", font=("Helvetica", 20, "bold"))
+        tutorial_progress_title_label = tk.Label(master=tutorial_progress_frame, text="Tutorial Progress", font=("Helvetica", 20, "bold"),background="#F6F0FF")
         tutorial_progress_title_label.grid(row=0, column=0, padx=10, pady=10,columnspan=2)
 
         # Create a label for the tutorial progress percentage
-        tutorial_progress_percentage_label = tk.Label(master=tutorial_progress_frame, text=f"{self.tutorial_completion_percentage}%", font=("Helvetica", 30, "bold"))
+        tutorial_progress_percentage_label = tk.Label(master=tutorial_progress_frame, text=f"{self.tutorial_completion_percentage}%", font=("Helvetica", 30, "bold"),background="#F6F0FF")
         tutorial_progress_percentage_label.grid(row=1, column=0, padx=20, pady=10,rowspan=2,sticky=tk.W)
 
         # Create a label beside tutorial progress percentage to show the number of tutorials completed
-        tutorial_progress_number_label = tk.Label(master=tutorial_progress_frame, text=f"{len(self.all_tutorials_completed)} of {ModuleManager.get_instance().calculate_number_of_tutorials()} tutorials completed", font=("Helvetica", 15),wraplength=100)
+        tutorial_progress_number_label = tk.Label(master=tutorial_progress_frame, text=f"{len(self.all_tutorials_completed)} of {ModuleManager.get_instance().calculate_number_of_tutorials()} tutorials completed", font=("Helvetica", 15),wraplength=100,background="#F6F0FF")
         tutorial_progress_number_label.grid(row=1, column=2, padx=10, pady=10,rowspan=2,sticky=tk.W)
 
         # Create a frame for quiz Progress below the container beside the tutorial progress frame
@@ -70,15 +73,15 @@ class CheckProgressFrame(tk.Frame):
         quiz_progress_frame.grid(row=0, column=1, padx=10, pady=10,sticky=tk.W)
 
         # Create a label for the quiz progress title
-        quiz_progress_title_label = tk.Label(master=quiz_progress_frame, text="Quiz Progress", font=("Helvetica", 20, "bold"))
+        quiz_progress_title_label = tk.Label(master=quiz_progress_frame, text="Quiz Progress", font=("Helvetica", 20, "bold"),background="#F6F0FF")
         quiz_progress_title_label.grid(row=0, column=0, padx=10, pady=10,columnspan=2)
 
         # Create a label for the quiz progress percentage
-        quiz_progress_percentage_label = tk.Label(master=quiz_progress_frame, text=f"{self.quiz_completion_percentage}%", font=("Helvetica", 30, "bold"))
+        quiz_progress_percentage_label = tk.Label(master=quiz_progress_frame, text=f"{self.quiz_completion_percentage}%", font=("Helvetica", 30, "bold"),background="#F6F0FF")
         quiz_progress_percentage_label.grid(row=1, column=0, padx=20, pady=10,rowspan=2,sticky=tk.W)
 
         # Create a label beside quiz progress percentage to show the number of quizzes completed
-        quiz_progress_number_label = tk.Label(master=quiz_progress_frame, text=f"{len(self.all_quizzes_completed)} of {ModuleManager.get_instance().calculate_number_of_quizzes()} quizzes completed", font=("Helvetica", 15),wraplength=100)
+        quiz_progress_number_label = tk.Label(master=quiz_progress_frame, text=f"{len(self.all_quizzes_completed)} of {ModuleManager.get_instance().calculate_number_of_quizzes()} quizzes completed", font=("Helvetica", 15),wraplength=100,background="#F6F0FF")
         quiz_progress_number_label.grid(row=1, column=2, padx=10, pady=10,rowspan=2,sticky=tk.W)
 
         # Create a Back Button position in the center

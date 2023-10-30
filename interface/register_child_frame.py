@@ -42,8 +42,8 @@ class RegisterChildFrame(tk.Frame):
 
         # Create a message for registration outcome
         self.register_child_text = tk.StringVar()
-        register_child_message = tk.Message(master=self, textvariable=self.register_child_text, font=("Helvetica", 15), width=500)
-        register_child_message.grid(row=6, column=0, padx=10, pady=10, columnspan=2)
+        register_child_message = tk.Message(master=self, textvariable=self.register_child_text, font=("Helvetica", 15), width=300)
+        register_child_message.grid(row=6, column=0, padx=10, pady=10, columnspan=2,rowspan=2)
 
     def register_child(self):
         """
@@ -55,6 +55,16 @@ class RegisterChildFrame(tk.Frame):
         # Check if email is empty
         if email == "":
             self.register_child_text.set("Please enter your child's email.")
+            return
+        
+        child_user = UserManager.get_instance().get_user_by_email(email)
+        # Check if email is valid and in UserManager and is YoungLearner
+        if child_user == None:
+            self.register_child_text.set("The email is not registered.")
+            return
+
+        if isinstance(child_user, YoungLearner) == False:
+            self.register_child_text.set("The email is not registered as a Young Learner.")
             return
         
         # Try adding child to parent

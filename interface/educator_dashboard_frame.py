@@ -19,17 +19,20 @@ class EducatorDashboardFrame(tk.Frame):
         self.user_obj = user_obj
         self.modules_db = modules_db
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         # Create a container to hold the widgets
-        container = tk.Frame(master=self)
+        container = tk.Frame(master=self, bg="white")
         container.grid(row=0, column=0, padx=10, pady=10)
 
         # Create a welcome message
         welcome_message = tk.Label(master=container, text="Welcome back,",
-                                   font=("Helvetica", 24, "bold"))
+                                   font=("Helvetica", 24, "bold"), bg="white")
         welcome_message.grid(row=0, column=0, padx=10, pady=10)
 
         # Create a username label
-        username_label = tk.Label(master=container, text=f"{self.user_obj.get_firstname()}!",font=("Helvetica", 24, "bold"))
+        username_label = tk.Label(master=container, text=f"{self.user_obj.get_firstname()}!",font=("Helvetica", 24, "bold"), bg="white")
         username_label.grid(row=1, column=0, padx=10, pady=(5,10))
 
         # Create a view student progress button
@@ -43,7 +46,7 @@ class EducatorDashboardFrame(tk.Frame):
         logout_button.grid(row=3, column=0, padx=10, pady=20)
 
         # Create a canvas for the image
-        self.educator_dashboard_canvas = tk.Canvas(master=self, width=400, height=450,background="black")
+        self.educator_dashboard_canvas = tk.Canvas(master=self, width=400, height=450,background="white",highlightthickness=0)
         self.educator_dashboard_canvas.grid(row=0, column=1, columnspan=3, rowspan=3)
 
         # Insert the image onto the canvas

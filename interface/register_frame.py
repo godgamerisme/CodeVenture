@@ -17,12 +17,15 @@ class RegisterFrame(tk.Frame):
         self.homepage_frame = homepage_frame
         self.auth = auth
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         # Create a Register Title
-        register_title = tk.Label(master=self, text="Create Account", font=("Helvetica", 24,"bold"))
+        register_title = tk.Label(master=self, text="Create Account", font=("Helvetica", 24,"bold"),bg="white")
         register_title.grid(row=0,columnspan=2,padx=10,pady=(50,10))
 
         # Create a First Name Label
-        first_name_label = tk.Label(master=self, text="First Name",font=("Helvetica", 12))
+        first_name_label = tk.Label(master=self, text="First Name",font=("Helvetica", 12),bg="white")
         first_name_label.grid(row=1,column=0,padx=10,pady=(10,0),sticky="w")
 
         # Create a First Name Entry
@@ -31,7 +34,7 @@ class RegisterFrame(tk.Frame):
         self.first_name_entry.grid(row=2,column=0,padx=10,pady=(0,10),sticky="ew",columnspan=2)
 
         # Create a Last Name Label
-        last_name_label = tk.Label(master=self, text="Last Name",font=("Helvetica", 12))
+        last_name_label = tk.Label(master=self, text="Last Name",font=("Helvetica", 12),bg="white")
         last_name_label.grid(row=3,column=0,padx=10,pady=(10,0),sticky="w")
 
         # Create a Last Name Entry
@@ -40,7 +43,7 @@ class RegisterFrame(tk.Frame):
         self.last_name_entry.grid(row=4,column=0,padx=10,pady=(0,10),sticky="ew",columnspan=2)
 
         # Create a Password Label
-        password_label = tk.Label(master=self, text="Password",font=("Helvetica", 12))
+        password_label = tk.Label(master=self, text="Password",font=("Helvetica", 12),bg="white")
         password_label.grid(row=5,column=0,padx=10,pady=(10,0),sticky="w")
 
         # Create a Password Entry
@@ -49,7 +52,7 @@ class RegisterFrame(tk.Frame):
         self.password_entry.grid(row=6,column=0,padx=10,pady=(0,10),sticky="ew",columnspan=2)
 
         # Create a Email Label
-        email_label = tk.Label(master=self, text="Email",font=("Helvetica", 12))
+        email_label = tk.Label(master=self, text="Email",font=("Helvetica", 12),bg="white")
         email_label.grid(row=7,column=0,padx=10,pady=(10,0),sticky="w")
 
         # Create a Email Entry
@@ -58,7 +61,7 @@ class RegisterFrame(tk.Frame):
         self.email_entry.grid(row=8,column=0,padx=10,pady=(0,10),sticky="ew",columnspan=2)
 
         # Create a User Type Label
-        user_type_label = tk.Label(master=self, text="User Type",font=("Helvetica", 12))
+        user_type_label = tk.Label(master=self, text="User Type",font=("Helvetica", 12),bg="white")
         user_type_label.grid(row=9,column=0,padx=10,pady=(10,0),sticky="w")
 
         # Create a Dropdown Menu
@@ -77,12 +80,12 @@ class RegisterFrame(tk.Frame):
 
         # Create a Register Text
         self.register_text = tk.StringVar()
-        register_message = tk.Message(master=self, textvariable=self.register_text,width=150,font=("Helvetica", 9))
+        register_message = tk.Message(master=self, textvariable=self.register_text,width=150,font=("Helvetica", 9),bg="white")
         register_message.grid(row=13,columnspan=2,padx=10,pady=10)
 
         # Create a UserName Message
         self.username_text = tk.StringVar()
-        username_message = tk.Message(master=self, textvariable=self.username_text,width=150,font=("Helvetica", 9))
+        username_message = tk.Message(master=self, textvariable=self.username_text,width=150,font=("Helvetica", 9),bg="white")
         username_message.grid(row=14,columnspan=2,padx=10,pady=0)
 
     def register(self):

@@ -18,12 +18,15 @@ class ResetPasswordFrame(tk.Frame):
         self.login_frame = login_frame
         self.auth = auth
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         # Create a Reset Password Title
-        reset_password_title = tk.Label(master=self, text="Forgot Password?", font=("Helvetica", 24,"bold"))
+        reset_password_title = tk.Label(master=self, text="Forgot Password?", font=("Helvetica", 24,"bold"),bg="white")
         reset_password_title.grid(row=0,columnspan=2,padx=10,pady=(50,10))
 
         # Create a email Label
-        email_label = tk.Label(master=self, text="Email",font=("Helvetica", 12))
+        email_label = tk.Label(master=self, text="Email",font=("Helvetica", 12),bg="white")
         email_label.grid(row=1,column=0,padx=10,pady=(10,0),sticky="w")
 
         # Create a email Entry
@@ -32,7 +35,7 @@ class ResetPasswordFrame(tk.Frame):
         self.email_entry.grid(row=2,column=0,padx=10,pady=(0,10),sticky="ew",columnspan=2)
 
         # Create a new password Label
-        new_password_label = tk.Label(master=self, text="New Password",font=("Helvetica", 12))
+        new_password_label = tk.Label(master=self, text="New Password",font=("Helvetica", 12),bg="white")
         new_password_label.grid(row=3,column=0,padx=10,pady=(10,0),sticky="w")
 
         # Create a new password Entry
@@ -52,7 +55,7 @@ class ResetPasswordFrame(tk.Frame):
 
         # Create a Reset Password outcome message
         self.reset_password_text = tk.StringVar()
-        reset_password_message = tk.Message(master=self, textvariable=self.reset_password_text, width=150,font=("Helvetica", 9))
+        reset_password_message = tk.Message(master=self, textvariable=self.reset_password_text, width=150,font=("Helvetica", 9),bg="white")
         reset_password_message.grid(row=7,columnspan=2,padx=10,pady=10)
 
     def reset_password(self):

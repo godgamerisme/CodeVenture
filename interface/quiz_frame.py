@@ -20,16 +20,19 @@ class QuizFrame(tk.Frame):
         self.module_selected = module_selected
         self.current_question = current_question
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         # Get quiz question from module selected
         self.quiz = self.module_selected.get_quiz()
         self.questions = self.quiz.get_questions()
 
         # Create a label for the quiz title
-        quiz_title_label = tk.Label(master=self, text="Take Quiz", font=("Helvetica", 20, "bold"))
+        quiz_title_label = tk.Label(master=self, text="Take Quiz", font=("Helvetica", 20, "bold"), bg="white")
         quiz_title_label.grid(row=0, column=0, padx=30, pady=15,columnspan=2)
 
         # Create a label for the quiz question
-        self.quiz_question_label = tk.Label(master=self, text=self.questions[self.current_question].get_question(), font=("Helvetica", 18, "bold"),wraplength=700,justify=tk.LEFT)
+        self.quiz_question_label = tk.Label(master=self, text=self.questions[self.current_question].get_question(), font=("Helvetica", 18, "bold"),wraplength=700,justify=tk.LEFT, bg="white")
         self.quiz_question_label.grid(row=1, column=0, padx=10, pady=10,columnspan=2)
 
         # Create option buttons
@@ -46,7 +49,7 @@ class QuizFrame(tk.Frame):
 
         # Create a label for the quiz outcome
         self.quiz_outcome_text = tk.StringVar()
-        quiz_outcome_message = tk.Message(master=self, textvariable=self.quiz_outcome_text, font=("Helvetica", 15), width=500)
+        quiz_outcome_message = tk.Message(master=self, textvariable=self.quiz_outcome_text, font=("Helvetica", 15), width=500, bg="white")
         quiz_outcome_message.grid(row=5, column=0, padx=10, pady=10, columnspan=2,rowspan=2)
 
         # Create a Back Button
@@ -71,7 +74,7 @@ class QuizFrame(tk.Frame):
 
         # Create a label to show quiz submission status
         self.quiz_submission_status_text = tk.StringVar()
-        quiz_submission_status_message = tk.Message(master=self, textvariable=self.quiz_submission_status_text, font=("Helvetica", 15), width=500)
+        quiz_submission_status_message = tk.Message(master=self, textvariable=self.quiz_submission_status_text, font=("Helvetica", 15), width=500, bg="white")
         quiz_submission_status_message.grid(row=8, column=0, padx=10, pady=10, columnspan=2)
             
     def select_option(self,button_index,option_selected:str):

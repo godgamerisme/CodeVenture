@@ -17,17 +17,20 @@ class HomePageFrame(tk.Frame):
         super().__init__(master=master)
         self.master = master
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         # Set up authentication
         self.auth = UserAuthenticate()
 
         self.grid_columnconfigure(0, weight=1, minsize=20)
 
-        home_page_title = tk.Label(self, text="Welcome to CodeVenture", font=("Helvetica", 24,"bold"))
+        home_page_title = tk.Label(self, text="Welcome to CodeVenture", font=("Helvetica", 24,"bold"),bg="white")
         home_page_title.grid(row=0,columnspan=3)
         
         
         # Create a canvas for the image
-        self.home_canvas = tk.Canvas(master=self, width=400, height=400)
+        self.home_canvas = tk.Canvas(master=self, width=400, height=400, bg="white",highlightthickness=0)
         self.home_canvas.grid(row=1, column=0, sticky=tk.W,padx=15,pady=20)
 
         # Load and display an image on the canvas
@@ -37,7 +40,7 @@ class HomePageFrame(tk.Frame):
         
         
         # Create a frame for the "Login" and "Register" buttons
-        button_frame = tk.Frame(master=self)
+        button_frame = tk.Frame(master=self,bg="white")
         button_frame.grid(row=1, column=1, sticky=tk.W,columnspan=2)
 
         # Create a "Login" button

@@ -20,47 +20,100 @@ class UserAuthenticate:
         self.module_array = self.module_db.get_module_array()
 
     def get_module_array(self):
+        """
+         get the module array
+        :return: array of Module objects
+        """
         return self.module_array
     
     def get_module_data(self):
+        """
+        get the module data
+        :return: data read from json
+        """
         return self.module_data
     
     def get_module_db(self):
+        """
+        get the module database
+        :return: ModuleDatabase object
+        """
         return self.module_db
 
     def get_users(self):
+        """
+        get the users array
+        :return: array of User objects
+        """
         return self.users
     
     def get_user_data(self):
+        """
+        get the user data
+        :return: data read from json
+        """
         return self.user_data
     
     def get_user_db(self):
+        """
+        get the user database
+        :return: UserDatabase object
+        """
         return self.user_db
 
 
     def validate_name(self, name):
+        """
+        Validate name of user
+        :param name: str
+        :return: True if name is valid, False otherwise
+        """
         if len(name) <= 10 and name.isalpha():
             return True
         return False
 
     def validate_password(self, password):
+        """
+        Validate password of user
+        :param password: str
+        :return: True if password is valid, False otherwise
+        """
         if 5 <= len(password) <= 15:
             return True
         return False
 
     def validate_usertype(self, usertype):
+        """
+        Validate usertype of user
+        :param usertype: str
+        :return: True if usertype is valid, False otherwise
+        """
         if usertype.lower() in ["younglearner", "educator", "parent"]:
             return True
         return False
         
 
     def validate_email(self, email):
+        """
+        Validate email of user
+        :param email: str
+        :return: True if email is valid, False otherwise
+        """
         # Make sure email is not empty and unique
         if email != "" and "@" in email and email.endswith(".com") and email not in [user.email for user in self.users]:
             return True
         return False
 
     def register(self, new_firstname, new_lastname, new_password, email, new_usertype):
+        """
+        Register a new user
+        :param new_firstname: str
+        :param new_lastname: str
+        :param new_password: str
+        :param email: str
+        :param new_usertype: str
+        :return: True if register successfully, False otherwise
+        """
         if self.validate_name(new_firstname) and self.validate_name(new_lastname) and self.validate_password(new_password) and self.validate_email(email) and self.validate_usertype(new_usertype):
             # Auto generate user ID
             id = len(self.user_data) + 1
@@ -111,6 +164,9 @@ class UserAuthenticate:
             return False
 
     def pack_user_data(self, id, firstname, lastname, username, email, password, usertype):
+        """
+        Create a dictionary for the new user object
+        """
         obj ={
             "id": id,
             "firstname": firstname,
@@ -124,6 +180,9 @@ class UserAuthenticate:
             obj["children"] = []
         return obj
     def pack_module_progress_data(self, user_id,username,num_of_modules):
+        """
+        Create a dictionary for the new module object
+        """
         return {
             "user_id": user_id,
             "username": username,
@@ -132,6 +191,12 @@ class UserAuthenticate:
         }
 
     def login(self, username, password):
+        """
+        Login user with username and password
+        :param username: str
+        :param password: str
+        :return: True if login successfully, False otherwise
+        """
 
         # Check if username exists
         user = next((user for user in self.users if user.username == username), None)
@@ -148,6 +213,12 @@ class UserAuthenticate:
             return False
 
     def reset_password(self, email, new_password):
+        """
+        Reset password of user
+        :param email: str
+        :param new_password: str
+        :return: True if reset successfully, False otherwise
+        """
         # Check if email exists
         user = next((user for user in self.users if user.email == email), None)
         if user:

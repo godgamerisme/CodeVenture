@@ -40,6 +40,8 @@ class ModuleDatabase:
     def get_user_module_progress(self,user_id):
         """
         Return the reference to the database entry of the user's module progress
+        :param user_id: user id of the user
+        :return: reference to the database entry of the user's module progress
         """
         for user in self.data["users"]:
             if user["user_id"] == user_id:
@@ -78,6 +80,9 @@ class ModuleDatabase:
     def complete_tutorial(self,user_id,module_id,tutorial_id):
         """
         Complete a tutorial
+        :param user_id: user id of the user
+        :param module_id: module id of the module
+        :param tutorial_id: tutorial id of the tutorial
         """
         #Add tutorial id to the user's module progress in module array
         #Adding to the array will automatically update the data in json
@@ -94,6 +99,9 @@ class ModuleDatabase:
     def complete_quiz(self,user_id,module_id,quiz_id):
         """
         Complete a quiz
+        :param user_id: user id of the user
+        :param module_id: module id of the module
+        :param quiz_id: quiz id of the quiz
         """
         #Add quiz id to the user's module progress in module array
         #Adding to the array will automatically update the data in json

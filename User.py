@@ -12,6 +12,9 @@ class User:
         self.password = password
         self.usertype = usertype
 
+    """
+    Getters
+    """
     def get_usertype(self):
         return self.usertype
 
@@ -92,6 +95,10 @@ class Parent(User):
         return self.children
     
     def add_child(self, child_email:str):
+        """
+        Add a child to the parent's children list
+        :param child_email: email of the child
+        """
         if len(self.children)<1:
             if child_email not in self.children:
                 self.children.append(child_email)

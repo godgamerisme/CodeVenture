@@ -17,12 +17,15 @@ class RegisterChildFrame(tk.Frame):
         self.user_obj = user_obj
         self.modules_db = modules_db
 
+        # Set the background colour of the frame to follow main window
+        self.configure(bg="white")
+
         # Create a label for the title
-        title_label = tk.Label(master=self, text="Register Child (Maximum of One)", font=("Helvetica", 25, "bold"),wraplength=300)
+        title_label = tk.Label(master=self, text="Register Child (Maximum of One)", font=("Helvetica", 25, "bold"),wraplength=300,justify=tk.CENTER, bg="white")
         title_label.grid(row=0, column=0, padx=10, pady=10,columnspan=2,rowspan=2)
 
         # Create a label for Please enter your child's email
-        email_label = tk.Label(master=self, text="Please enter your child's email", font=("Helvetica", 15))
+        email_label = tk.Label(master=self, text="Please enter your child's email", font=("Helvetica", 15), bg="white")
         email_label.grid(row=2, column=0, padx=10, pady=10,columnspan=2)
 
         # Create a Email Entry
@@ -42,7 +45,7 @@ class RegisterChildFrame(tk.Frame):
 
         # Create a message for registration outcome
         self.register_child_text = tk.StringVar()
-        register_child_message = tk.Message(master=self, textvariable=self.register_child_text, font=("Helvetica", 15), width=300)
+        register_child_message = tk.Message(master=self, textvariable=self.register_child_text, font=("Helvetica", 15), width=300, bg="white")
         register_child_message.grid(row=6, column=0, padx=10, pady=10, columnspan=2,rowspan=2)
 
     def register_child(self):
